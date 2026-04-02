@@ -513,10 +513,6 @@ export default function Home() {
                   <div className="opacity-0 animate-[fadeIn_0.5s_ease-out_forwards]">
                     <div className="whitespace-pre-wrap text-[16px] text-[#111111] leading-[1.5] tracking-[0.02em]">
                       {displayedPromptText}
-                      {/* Blinking cursor while typing */}
-                      {longTextSection === 0 && (
-                        <span className="inline-block w-[2px] h-[15px] bg-[#111111] ml-0.5 align-middle animate-[pulse_0.8s_cubic-bezier(0.4,0,0.6,1)_infinite]"></span>
-                      )}
                     </div>
                   </div>
                 )}
