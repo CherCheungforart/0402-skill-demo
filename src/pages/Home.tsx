@@ -434,7 +434,7 @@ export default function Home() {
           <div className={`flex flex-col px-0 pt-3 pb-1 transition-all duration-500 ease-out transform delay-150 ${step >= 3 ? 'opacity-100 translate-y-0 h-auto' : 'opacity-0 translate-y-4 pointer-events-none h-0 overflow-hidden'}`}>
             <div className="flex items-center space-x-[6px] pl-3">
               <img 
-                src="/skill-icon.png" 
+                src="/skill-icon-2.png" 
                 alt="System Icon" 
                 className="w-[20px] h-[20px] object-contain [image-rendering:-webkit-optimize-contrast] [image-rendering:crisp-edges]"
               />
