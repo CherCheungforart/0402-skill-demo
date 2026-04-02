@@ -445,7 +445,7 @@ export default function Home() {
             
             {/* 2. Expand/Collapse Toggle (Now under System Notification) */}
             {step >= 4 && (
-              <div className="opacity-0 animate-[fadeIn_0.5s_ease-out_forwards] pl-3 pr-7 pt-[12px]">
+              <div className="opacity-0 animate-[fadeIn_0.5s_ease-out_forwards] pl-3 pr-7 pt-[14px]">
                 <button 
                   onClick={(e) => {
                     e.stopPropagation();
