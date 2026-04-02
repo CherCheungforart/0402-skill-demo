@@ -688,7 +688,7 @@ export default function Home() {
                 onClick={(e) => handleImageSelect(e, 'image3')}
                 className="aspect-square rounded-[16px] overflow-hidden cursor-pointer relative group border border-gray-100 shadow-sm"
               >
-                <img src="/vv3.jpg" alt="Gallery item 3" className="w-full h-full object-cover transition-transform group-active:scale-105" />
+                <img src="/yiman4.jpg" alt="Gallery item 3" className="w-full h-full object-cover transition-transform group-active:scale-105" />
                 <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors" />
                 <div className="absolute bottom-1 right-1 bg-black/40 backdrop-blur-sm rounded-full p-1 opacity-0 group-hover:opacity-100 transition-opacity">
                   <ImageIcon size={12} color="white" />
