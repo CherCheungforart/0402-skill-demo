@@ -605,14 +605,14 @@ export default function Home() {
           </div>
         </div>
         
-        {/* Attachment Drawer */}
+        {/* Drawer Component */}
         <div className={`absolute bottom-0 left-0 right-0 bg-white rounded-t-[24px] shadow-[0_-8px_30px_rgba(0,0,0,0.12)] transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] z-40 ${isDrawerOpen ? 'translate-y-0' : 'translate-y-full'}`}>
-          <div className="p-5 pb-8">
-            <div className="flex justify-center items-center mb-4 mt-2">
+          <div className="p-4 pt-3 pb-8">
+            <div className="flex justify-start items-center mb-3 mt-1">
               <h2 className="text-[13px] font-normal text-[#8E8E93]">选择素材图片</h2>
             </div>
             
-            <div className="grid grid-cols-4 gap-3 mt-[20px]">
+            <div className="grid grid-cols-4 gap-3 mt-[12px]">
               {/* The target image */}
               <div 
                 onClick={handleImageSelect}
