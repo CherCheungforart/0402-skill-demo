@@ -15,6 +15,55 @@ const FadeInText = ({ text, delay = 0, speed = 0.025, boldIndices = [] }: { text
   </>
 );
 
+const detailsTextA = `1）目标复述
+• 你要：15s MV 变装转场，风格更甜美；主体用你上传的人物图做一致性锚点；默认 16:9 横屏。
+• 节奏：1-3s 建立前状态，3-8s 完成主变装，变装后第一个有效镜头先给脸，再展开后造型与背景；后背景空间类型与原图明显不同。
+
+2）三点校准（默认直接定）
+• 主体画像：甜美清透、轻熟但克制
+• 子风格：A 甜野少女
+• 触发信号：发丝近景遮挡 + 开衫衣角掠镜遮挡 + 窗边冷白闪光一次
+
+3）方案概述
+用“低完成度日常前状态”做反差，后状态走甜野少女的轻甜高级感；后场景从原图日常墙面切换到“复古公寓窗边梳妆台”类型空间，形成强差异；收尾用冷蓝灰电影质感压住廉价甜。
+
+4）分镜脚本（4 镜）
+• 镜头1（1-3s）：中近景，前状态素净、低完成度，动作轻
+• 镜头2（3-5s）：推镜到脸，发丝遮挡，衣角掠镜
+• 镜头3（5-9s）：旋转擦拭完成变装，后状态开场先给脸（近景）
+• 镜头4（9-15s）：中景稳定展示 + 微跟进定帧，收尾做冷雾颗粒质感
+
+5）输入增强（可复制复用）
+用我上传的人物图做主体一致性锚点，做 15s K-pop MV 变装转场，16:9 横屏；子风格 A 甜野少女；前 1-3 秒前状态面部低完成度、低光影强调；3-8 秒完成主变装；转场固定推镜变焦 + 旋转擦拭，触发用发丝近景遮挡 + 开衫衣角掠镜遮挡 + 窗边冷白闪光一次；变装后第一个有效镜头先给面部，再展开肩颈线条、身形比例与完整后造型；后背景空间类型与原图明显不同；收尾用低饱和冷蓝灰电影质感、颗粒与轻微曝光漂移。
+
+6）迭代策略（你只要选一项）
+• 甜得更梦幻：我把后场景改成“雾感花房玻璃廊”，其余节奏不变
+• 甜得更高级：我把后造型改成“短外套 + 窄裙更利落”，保留甜野关键词不跑偏`;
+
+const detailsTextB = `1）目标复述
+• 保留这张图的人物五官、暖棕长发和原始气质。
+• 不继承当前豹纹内搭与米白墙室内背景。
+• 做一版更符合你本人的变装：轻熟、利落、带一点小野感，整体高级但不夸张。
+
+2）三点校准
+• 主体画像：暖棕长发、轻熟、随性、带一点攻击性的时髦感。
+• 后造型子风格：默认 B 街头混搭；它最能放大你原图里本来就有的自然时髦度和小性感。
+• 触发信号：默认抬手带起外套边缘遮挡；比单纯甩发更稳，也更有穿搭完成度。
+
+3）方案概述
+• 前状态压成普通室内、低修饰度、低完成度。
+• 后状态切进开阔室外旧街区结构空间，让人物、造型和背景一起完成升级。
+• 节奏上前 2-3 秒触发，8 秒前完成主要变装；变装后的第一个有效镜头先落在人物面部，再展开后造型和背景。
+
+4）分镜脚本
+• 镜头1：半身近景，人物穿基础灰色上衣与普通日常下装，停留在简单室内墙边。面部低修饰度，神态接近日常未整理完成状态。
+• 镜头2：镜头快速推近到肩颈与发丝，主体抬手转身，外套边缘或衣摆掠过镜头形成遮挡。遮挡一出现就触发变装，不拖节奏。
+• 镜头3：变装完成后的第一个有效镜头先给面部：近景落脸，先建立脸部吸引力、发型轮廓和后状态光影。然后顺势展开到后造型：短款修身上衣、利落短夹克、宽松做旧牛仔裤、厚底运动鞋。背景切到有建筑切面、水泥地和旧墙透视的室外街区空间。
+• 镜头4：中景稳定展示，镜头从面部附近轻轻拉开到中景。展示肩颈线条、腰胯比例、牛仔裤垂坠、外套轮廓和整体气场。结尾再做冷调颗粒和定帧质感收束。
+
+5）输入增强
+我要变装。保留原图脸部和暖棕长发特征，不继承原图服装和室内背景；前状态保持低修饰度、低光影强调、普通日常感；后造型走 B 街头混搭，偏轻熟、小野、不过分张扬，穿短款修身上衣、利落短夹克和宽松做旧牛仔裤；用推镜变焦 + 旋转擦拭，通过外套边缘掠镜触发；后背景切到有建筑切面、水泥地和旧墙透视的开阔街区空间；要求变装后的第一个有效镜头先以面部为中心，再展开到后造型与背景。`;
+
 export default function Home() {
   const [inputText, setInputText] = useState('');
   const [step, setStep] = useState(0); // Start at step 0 for a completely blank initial screen
@@ -35,6 +84,7 @@ export default function Home() {
   
   // Track prompt text typing simulation
   const [displayedPromptText, setDisplayedPromptText] = useState('');
+  const [displayedDetailsText, setDisplayedDetailsText] = useState('');
   
   const chatContainerRef = useRef<HTMLDivElement>(null);
 
@@ -52,84 +102,82 @@ export default function Home() {
       return () => clearTimeout(timer);
     }
     
-    // Automatically trigger Step 4 after Step 3 is shown
+    // Automatically trigger Step 4 (Details typing) after Step 3 is shown
     if (step === 3) {
       const timer = setTimeout(() => {
+        setIsDetailsExpanded(true); // Open the details section automatically
         setStep(4);
       }, 800); // Wait 800ms after showing the system notification before showing the detailed response
       return () => clearTimeout(timer);
     }
 
-    // Step 4 Progressive Revelation Logic
+    // Step 4 Progressive Revelation Logic: Type Details Content
     if (step === 4) {
-      const maxSection = 3; // We now have 3 main sections: Prompt, Details Toggle, Details Content
+      const detailsFullText = selectedStyle === 'A' ? detailsTextA : detailsTextB;
+      let currentIndex = 0;
       
-      // Determine the full text to type out
-      const fullText = selectedStyle === 'A' 
-        ? '一个剪辑成转场运镜变装的视频，不要生成字幕和背景音乐，仅带有音效；\n画面比例为 16:9 横屏；\n参考 <人物图1> 中的人物作为主体（保持五官与脸部一致性、发型一致性、气质一致性）；\n\n（1-3s，中近景）变装前：\n前造型：浅灰细肩带基础内搭，外搭米白薄款针织开衫，下装为深色直筒长裤，整体日常克制；\n动作：人物轻轻整理开衫领口，抬眼看向镜头，微微侧头；\n场景与氛围光感：与原图同类的日常室内空间，干净墙面，柔和自然光但对比度偏低，真实可拍摄；\n前状态面部表现：低修饰度、妆面存在感减弱、立体光影减弱、气色收敛、肤质更日常；\n子风格关键词：甜野少女、清透轻甜、真实生活感的精致整理、柔光快照质感；\n\n（3-12s，无缝过渡转场变装，慢动作特写，强化节奏变化）：\n转场机制：推镜变焦 + 旋转擦拭；\n触发信号：镜头快速推近到面部，发丝贴近镜头形成第一次遮挡，开衫衣角掠过镜头形成第二次遮挡，窗边出现一次冷白闪光作为节拍点；\n节奏变化：推镜明显加速，遮挡切换干脆，闪光瞬间完成形变；\n变装后的第一个有效镜头先以面部为中心：近景先建立后状态面部完成度（肤质更干净、五官光影更清晰、眼神更甜但更有主导感），发型轮廓更顺滑并带柔和高光边缘；随后镜头带出肩颈线条更清楚、身形比例更利落；\n后造型：短款合身针织上衣，百褶短裙，小珍珠项链，小体量硬挺包袋，发侧蝴蝶结发饰形成小面积高光点，轮廓清晰不松垮；\n背景无缝切换为后场景：复古公寓窗边梳妆台区域，旧木桌面与镜框、少量旧相框与桌面小摆件，空间类型与原图背景明显不同；\n光线氛围：窗边柔光与冷白边缘高光并存，低饱和冷蓝灰作为底色，亮部干净、暗部有结构；\n\n（13-15s，中景到近景）收尾：\n后造型稳定展示：人物轻轻抬手拨发，停住对镜微笑，镜头保持人物面部为主要视觉焦点；\n镜头：轻微跟进后定住，形成 MV 预告片快照式定帧；\n收尾色调与质感：低饱和冷蓝灰色阶，轻微曝光漂移，胶片颗粒与细密数码噪点叠加，高光边缘冷白干净，反差克制但质感高级。'
-        : '一个剪辑成转场运镜变装的视频，不要生成字幕和背景音乐，仅带有音效；\n画面比例为 16:9 横屏；\n参考 <图1> 中的女人作为主体，保持五官、脸型、暖棕色长发与整体气质一致；\n\n（1-2s，半身近景）变装前：主体处在普通室内环境，背景是简单米白墙面与日常室内光线，穿基础灰色上衣与普通日常下装；前状态面部表现为低修饰度、妆面存在感弱、立体光影弱、神态更接近日常未修饰状态，整体普通、克制、生活化；\n镜头快速轻推近，在主体抬手准备转身的瞬间，衣角被动作带起，同时，\n\n（2-8s，无缝过渡转场变装，慢动作特写，特效）\n主体在抬手转身的动作轨迹中瞬间完成变装，变装后的第一个有效镜头先以面部为中心：后状态脸部更干净，眼部轮廓更清楚，暖棕长发边缘被冷白光勾出清晰发丝线条，肩颈线条被抬亮；\n随即镜头从面部近景自然展开到上半身，已完全换上轻熟街头时装：黑色短款修身上衣，外搭利落短夹克，下身是宽松做旧牛仔裤，脚穿厚底运动鞋；服装轮廓清楚，夹克边缘、牛仔褶皱与金属扣件出现短暂反光；\n转场为：推镜变焦 + 旋转擦拭，触发信号为外套边缘掠过镜头形成遮挡；\n背景无缝切换为开阔的室外旧街区结构空间：建筑立面切角、水泥地、木板边缘、远处旧墙面与街区透视完整出现，明显区别于原图的单一室内墙面；冷调漫射光打在发丝、夹克轮廓和牛仔褶皱上，地面灰尘被动作轻轻带起；\n\n（8-15s，中景）收尾：主体站定后轻微换重心，一只手自然落在裤袋附近，镜头从面部附近缓慢拉开到中景，保持后造型稳定展示；\n脸部状态、发型轮廓、肩颈线条、腰胯比例、牛仔裤垂坠和鞋底厚度全部可见；结尾重点强化色调与质感：低饱和冷蓝灰色阶、轻微曝光漂移、胶片颗粒与数码噪点并存，暗部压低但保留结构，发丝边缘与鼻梁、锁骨位置出现冷白高光反射，整体呈现韩系 MV 预告片式的高级定帧感。';
-
-      if (longTextSection === 0) {
-        // Simulate typing for the prompt text
-        let currentIndex = 0;
-        const typingInterval = setInterval(() => {
-          if (currentIndex <= fullText.length) {
-            setDisplayedPromptText(fullText.substring(0, currentIndex));
-            currentIndex += 1; // Type 1 character at a time for a more realistic feel
-            
-            // Auto scroll while typing
-            if (chatContainerRef.current) {
-              chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
-            }
-          } else {
-            clearInterval(typingInterval);
-            // Move to next section shortly after typing completes
-            setTimeout(() => {
-              setLongTextSection(prev => prev + 1);
-            }, 600);
-          }
-        }, 25); // Slower typing speed (25ms per char instead of 15ms)
-
-        return () => clearInterval(typingInterval);
-      }
-
-      if (longTextSection > 0 && longTextSection < maxSection) {
-        // Dynamic delay logic (simulating reading/typing speed):
-        let delayMs = 600; // Base delay
-        
-        if (longTextSection === 1) delayMs = 800; // Show the details toggle
-        if (longTextSection === 2) delayMs = 1000; // Show the rest
-
-        const timer = setTimeout(() => {
-          setLongTextSection(prev => prev + 1);
-          // Ensure auto-scroll happens as new sections appear
+      const typingInterval = setInterval(() => {
+        if (currentIndex <= detailsFullText.length) {
+          setDisplayedDetailsText(detailsFullText.substring(0, currentIndex));
+          currentIndex += 2; // Type 2 chars at a time for speed
+          
           if (chatContainerRef.current) {
             chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
           }
-        }, delayMs);
-        return () => clearTimeout(timer);
-      } else if (longTextSection === maxSection) {
-        // Once all sections are revealed, trigger Step 5
-        const timer = setTimeout(() => {
-          setStep(5);
-        }, 1200); 
-        return () => clearTimeout(timer);
-      }
+        } else {
+          clearInterval(typingInterval);
+          // Wait after typing completes, then collapse and move to Step 5
+          setTimeout(() => {
+            setIsDetailsExpanded(false);
+            setTimeout(() => {
+              setStep(5);
+            }, 600); // wait for collapse animation
+          }, 1200);
+        }
+      }, 10); // Very fast typing speed
+
+      return () => clearInterval(typingInterval);
     }
 
-    // Automatically trigger Step 6 (Video) after Step 5 is shown
+    // Step 5 Progressive Revelation Logic: Type Prompt Text
     if (step === 5) {
+      const fullPromptText = selectedStyle === 'A' 
+        ? '一个剪辑成转场运镜变装的视频，不要生成字幕和背景音乐，仅带有音效；\n画面比例为 16:9 横屏；\n参考 <人物图1> 中的人物作为主体（保持五官与脸部一致性、发型一致性、气质一致性）；\n\n（1-3s，中近景）变装前：\n前造型：浅灰细肩带基础内搭，外搭米白薄款针织开衫，下装为深色直筒长裤，整体日常克制；\n动作：人物轻轻整理开衫领口，抬眼看向镜头，微微侧头；\n场景与氛围光感：与原图同类的日常室内空间，干净墙面，柔和自然光但对比度偏低，真实可拍摄；\n前状态面部表现：低修饰度、妆面存在感减弱、立体光影减弱、气色收敛、肤质更日常；\n子风格关键词：甜野少女、清透轻甜、真实生活感的精致整理、柔光快照质感；\n\n（3-12s，无缝过渡转场变装，慢动作特写，强化节奏变化）：\n转场机制：推镜变焦 + 旋转擦拭；\n触发信号：镜头快速推近到面部，发丝贴近镜头形成第一次遮挡，开衫衣角掠过镜头形成第二次遮挡，窗边出现一次冷白闪光作为节拍点；\n节奏变化：推镜明显加速，遮挡切换干脆，闪光瞬间完成形变；\n变装后的第一个有效镜头先以面部为中心：近景先建立后状态面部完成度（肤质更干净、五官光影更清晰、眼神更甜但更有主导感），发型轮廓更顺滑并带柔和高光边缘；随后镜头带出肩颈线条更清楚、身形比例更利落；\n后造型：短款合身针织上衣，百褶短裙，小珍珠项链，小体量硬挺包袋，发侧蝴蝶结发饰形成小面积高光点，轮廓清晰不松垮；\n背景无缝切换为后场景：复古公寓窗边梳妆台区域，旧木桌面与镜框、少量旧相框与桌面小摆件，空间类型与原图背景明显不同；\n光线氛围：窗边柔光与冷白边缘高光并存，低饱和冷蓝灰作为底色，亮部干净、暗部有结构；\n\n（13-15s，中景到近景）收尾：\n后造型稳定展示：人物轻轻抬手拨发，停住对镜微笑，镜头保持人物面部为主要视觉焦点；\n镜头：轻微跟进后定住，形成 MV 预告片快照式定帧；\n收尾色调与质感：低饱和冷蓝灰色阶，轻微曝光漂移，胶片颗粒与细密数码噪点叠加，高光边缘冷白干净，反差克制但质感高级。'
+        : '一个剪辑成转场运镜变装的视频，不要生成字幕和背景音乐，仅带有音效；\n画面比例为 16:9 横屏；\n参考 <图1> 中的女人作为主体，保持五官、脸型、暖棕色长发与整体气质一致；\n\n（1-2s，半身近景）变装前：主体处在普通室内环境，背景是简单米白墙面与日常室内光线，穿基础灰色上衣与普通日常下装；前状态面部表现为低修饰度、妆面存在感弱、立体光影弱、神态更接近日常未修饰状态，整体普通、克制、生活化；\n镜头快速轻推近，在主体抬手准备转身的瞬间，衣角被动作带起，同时，\n\n（2-8s，无缝过渡转场变装，慢动作特写，特效）\n主体在抬手转身的动作轨迹中瞬间完成变装，变装后的第一个有效镜头先以面部为中心：后状态脸部更干净，眼部轮廓更清楚，暖棕长发边缘被冷白光勾出清晰发丝线条，肩颈线条被抬亮；\n随即镜头从面部近景自然展开到上半身，已完全换上轻熟街头时装：黑色短款修身上衣，外搭利落短夹克，下身是宽松做旧牛仔裤，脚穿厚底运动鞋；服装轮廓清楚，夹克边缘、牛仔褶皱与金属扣件出现短暂反光；\n转场为：推镜变焦 + 旋转擦拭，触发信号为外套边缘掠过镜头形成遮挡；\n背景无缝切换为开阔的室外旧街区结构空间：建筑立面切角、水泥地、木板边缘、远处旧墙面与街区透视完整出现，明显区别于原图的单一室内墙面；冷调漫射光打在发丝、夹克轮廓和牛仔褶皱上，地面灰尘被动作轻轻带起；\n\n（8-15s，中景）收尾：主体站定后轻微换重心，一只手自然落在裤袋附近，镜头从面部附近缓慢拉开到中景，保持后造型稳定展示；\n脸部状态、发型轮廓、肩颈线条、腰胯比例、牛仔裤垂坠和鞋底厚度全部可见；结尾重点强化色调与质感：低饱和冷蓝灰色阶、轻微曝光漂移、胶片颗粒与数码噪点并存，暗部压低但保留结构，发丝边缘与鼻梁、锁骨位置出现冷白高光反射，整体呈现韩系 MV 预告片式的高级定帧感。';
+
+      let currentIndex = 0;
+      const typingInterval = setInterval(() => {
+        if (currentIndex <= fullPromptText.length) {
+          setDisplayedPromptText(fullPromptText.substring(0, currentIndex));
+          currentIndex += 1;
+          
+          if (chatContainerRef.current) {
+            chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
+          }
+        } else {
+          clearInterval(typingInterval);
+          setTimeout(() => {
+            setStep(6);
+          }, 600);
+        }
+      }, 20);
+
+      return () => clearInterval(typingInterval);
+    }
+
+    // Automatically trigger Step 7 (Video) after Step 6 is shown
+    if (step === 6) {
       const timer = setTimeout(() => {
-        setStep(6);
+        setStep(7);
       }, 800); // Wait 800ms before showing the video bubble
       return () => clearTimeout(timer);
     }
-  }, [step, innerStep, longTextSection]);
+  }, [step, innerStep]);
 
   const handleScreenClick = () => {
     // Only allow screen clicks to advance steps after the initial message has been sent
     // And skip step 1->2 because it's now automated
-    if (step >= 6 && step < 13) {
+    if (step >= 7 && step < 13) {
       setStep(prev => prev + 1);
     }
   };
@@ -167,12 +215,13 @@ export default function Home() {
     setInnerStep('function');
     setSelectedFunction(null);
     setSelectedStyle(null);
-    setLongTextSection(0);
     setIsDrawerOpen(false);
     setIsImageSelected(false);
     setIsTyping(false);
     setInputText('');
     setIsDetailsExpanded(false);
+    setDisplayedPromptText('');
+    setDisplayedDetailsText('');
   };
 
   const handlePlusClick = (e: React.MouseEvent) => {
@@ -399,7 +448,7 @@ export default function Home() {
             </div>
             
             {/* 2. Expand/Collapse Toggle (Now under System Notification) */}
-            {longTextSection >= 1 && (
+            {step >= 4 && (
               <div className="opacity-0 animate-[fadeIn_0.5s_ease-out_forwards] pl-[38px] pr-7 pt-1.5">
                 <button 
                   onClick={(e) => {
@@ -415,158 +464,64 @@ export default function Home() {
             )}
 
             {/* 3. Collapsible Details Section (Now under the toggle) */}
-            {longTextSection >= 2 && (
+            {step >= 4 && (
               <div className={`overflow-hidden transition-all duration-500 ease-in-out pl-[38px] pr-7 ${isDetailsExpanded ? 'max-h-[2000px] opacity-100 mt-3 mb-2' : 'max-h-0 opacity-0 mt-0 mb-0'}`}>
-                <div className="border-l-[2px] border-[#E5E5E5] pl-4 py-1 space-y-4 text-[13px] text-[#8E8E93] leading-[1.65] text-justify tracking-[0.01em]">
-                  {selectedStyle === 'A' ? (
-                    <>
-                      {/* Style A Content - Greyed Out */}
-                      <div>
-                        <h3 className="font-semibold text-[#70757A] mb-1">1）目标复述</h3>
-                        <ul className="space-y-1 pl-1">
-                          <li className="flex items-start">你要：15s MV 变装转场，风格更甜美；主体用你上传的人物图做一致性锚点；默认 16:9 横屏。</li>
-                          <li className="flex items-start">节奏：1-3s 建立前状态，3-8s 完成主变装，变装后第一个有效镜头先给脸，再展开后造型与背景；后背景空间类型与原图明显不同。</li>
-                        </ul>
+                <div className="border-l-[2px] border-[#E5E5E5] pl-4 py-1 text-[13px] text-[#8E8E93] leading-[1.65] text-justify tracking-[0.01em] whitespace-pre-wrap">
+                  {displayedDetailsText.split('\n').map((line, lineIndex) => {
+                    if (line.trim() === '') return <div key={lineIndex} className="h-3"></div>;
+                    const isHeader = /^\d）/.test(line);
+                    return (
+                      <div key={lineIndex} className={isHeader ? "font-bold text-[#70757A] mt-4 mb-1.5 text-[14px] first:mt-0" : "pl-1"}>
+                        {line.split('').map((char, charIndex) => (
+                          <span 
+                            key={charIndex} 
+                            className="opacity-0 animate-[textFadeIn_0.2s_ease-in_forwards]"
+                          >
+                            {char}
+                          </span>
+                        ))}
                       </div>
-                      <div>
-                        <h3 className="font-semibold text-[#70757A] mb-1">2）三点校准（默认直接定）</h3>
-                        <ul className="space-y-1 pl-1">
-                          <li className="flex items-start">主体画像：甜美清透、轻熟但克制</li>
-                          <li className="flex items-start">子风格：A 甜野少女</li>
-                          <li className="flex items-start">触发信号：发丝近景遮挡 + 开衫衣角掠镜遮挡 + 窗边冷白闪光一次</li>
-                        </ul>
-                      </div>
-                      <div>
-                        <h3 className="font-semibold text-[#70757A] mb-1">3）方案概述</h3>
-                        <p className="pl-1">用“低完成度日常前状态”做反差，后状态走甜野少女的轻甜高级感；后场景从原图日常墙面切换到“复古公寓窗边梳妆台”类型空间，形成强差异；收尾用冷蓝灰电影质感压住廉价甜。</p>
-                      </div>
-                      <div>
-                        <h3 className="font-semibold text-[#70757A] mb-1">4）分镜脚本（4 镜）</h3>
-                        <ul className="space-y-1.5 pl-1">
-                          <li>镜头1（1-3s）：中近景，前状态素净、低完成度，动作轻</li>
-                          <li>镜头2（3-5s）：推镜到脸，发丝遮挡，衣角掠镜</li>
-                          <li>镜头3（5-9s）：旋转擦拭完成变装，后状态开场先给脸（近景）</li>
-                          <li>镜头4（9-15s）：中景稳定展示 + 微跟进定帧，收尾做冷雾颗粒质感</li>
-                        </ul>
-                      </div>
-                      <div>
-                        <h3 className="font-semibold text-[#70757A] mb-1">5）输入增强（可复制复用）</h3>
-                        <p className="pl-1">用我上传的人物图做主体一致性锚点，做 15s K-pop MV 变装转场，16:9 横屏；子风格 A 甜野少女；前 1-3 秒前状态面部低完成度、低光影强调；3-8 秒完成主变装；转场固定推镜变焦 + 旋转擦拭，触发用发丝近景遮挡 + 开衫衣角掠镜遮挡 + 窗边冷白闪光一次；变装后第一个有效镜头先给面部，再展开肩颈线条、身形比例与完整后造型；后背景空间类型与原图明显不同；收尾用低饱和冷蓝灰电影质感、颗粒与轻微曝光漂移。</p>
-                      </div>
-                      <div>
-                        <h3 className="font-semibold text-[#70757A] mb-1">6）迭代策略（你只要选一项）</h3>
-                        <ul className="space-y-1 pl-1">
-                          <li className="flex items-start">甜得更梦幻：我把后场景改成“雾感花房玻璃廊”，其余节奏不变</li>
-                          <li className="flex items-start">甜得更高级：我把后造型改成“短外套 + 窄裙更利落”，保留甜野关键词不跑偏</li>
-                        </ul>
-                      </div>
-                    </>
-                  ) : (
-                    <>
-                      {/* Style B Content - Greyed Out */}
-                      <div>
-                        <h3 className="font-semibold text-[#70757A] mb-1">1）目标复述</h3>
-                        <ul className="space-y-1 pl-1">
-                          <li className="flex items-start">保留这张图的人物五官、暖棕长发和原始气质。</li>
-                          <li className="flex items-start">不继承当前豹纹内搭与米白墙室内背景。</li>
-                          <li className="flex items-start">做一版更符合你本人的变装：轻熟、利落、带一点小野感，整体高级但不夸张。</li>
-                        </ul>
-                      </div>
-                      <div>
-                        <h3 className="font-semibold text-[#70757A] mb-1">2）三点校准</h3>
-                        <ul className="space-y-1 pl-1">
-                          <li className="flex items-start">主体画像：暖棕长发、轻熟、随性、带一点攻击性的时髦感。</li>
-                          <li className="flex items-start">后造型子风格：默认 B 街头混搭；它最能放大你原图里本来就有的自然时髦度和小性感。</li>
-                          <li className="flex items-start">触发信号：默认抬手带起外套边缘遮挡；比单纯甩发更稳，也更有穿搭完成度。</li>
-                        </ul>
-                      </div>
-                      <div>
-                        <h3 className="font-semibold text-[#70757A] mb-1">3）方案概述</h3>
-                        <ul className="space-y-1 pl-1">
-                          <li className="flex items-start">前状态压成普通室内、低修饰度、低完成度。</li>
-                          <li className="flex items-start">后状态切进开阔室外旧街区结构空间，让人物、造型和背景一起完成升级。</li>
-                          <li className="flex items-start">节奏上前 2-3 秒触发，8 秒前完成主要变装；变装后的第一个有效镜头先落在人物面部，再展开后造型和背景。</li>
-                        </ul>
-                      </div>
-                      <div>
-                        <h3 className="font-semibold text-[#70757A] mb-1">4）分镜脚本</h3>
-                        <ul className="space-y-1.5 pl-1">
-                          <li>
-                            <div className="font-medium text-[#70757A]">镜头1</div>
-                            <div className="mt-0.5 text-[#A3A3A3]">半身近景，人物穿基础灰色上衣与普通日常下装，停留在简单室内墙边。面部低修饰度，神态接近日常未整理完成状态。</div>
-                          </li>
-                          <li>
-                            <div className="font-medium text-[#70757A]">镜头2</div>
-                            <div className="mt-0.5 text-[#A3A3A3]">镜头快速推近到肩颈与发丝，主体抬手转身，外套边缘或衣摆掠过镜头形成遮挡。遮挡一出现就触发变装，不拖节奏。</div>
-                          </li>
-                          <li>
-                            <div className="font-medium text-[#70757A]">镜头3</div>
-                            <div className="mt-0.5 text-[#A3A3A3]">变装完成后的第一个有效镜头先给面部：近景落脸，先建立脸部吸引力、发型轮廓和后状态光影。然后顺势展开到后造型：短款修身上衣、利落短夹克、宽松做旧牛仔裤、厚底运动鞋。背景切到有建筑切面、水泥地和旧墙透视的室外街区空间。</div>
-                          </li>
-                          <li>
-                            <div className="font-medium text-[#70757A]">镜头4</div>
-                            <div className="mt-0.5 text-[#A3A3A3]">中景稳定展示，镜头从面部附近轻轻拉开到中景。展示肩颈线条、腰胯比例、牛仔裤垂坠、外套轮廓和整体气场。结尾再做冷调颗粒和定帧质感收束。</div>
-                          </li>
-                        </ul>
-                      </div>
-                      <div>
-                        <h3 className="font-semibold text-[#70757A] mb-1">5）输入增强</h3>
-                        <ul className="space-y-1 pl-1">
-                          <li className="flex items-start">我要变装。保留原图脸部和暖棕长发特征，不继承原图服装和室内背景；前状态保持低修饰度、低光影强调、普通日常感；后造型走 B 街头混搭，偏轻熟、小野、不过分张扬，穿短款修身上衣、利落短夹克和宽松做旧牛仔裤；用推镜变焦 + 旋转擦拭，通过外套边缘掠镜触发；后背景切到有建筑切面、水泥地和旧墙透视的开阔街区空间；要求变装后的第一个有效镜头先以面部为中心，再展开到后造型与背景。</li>
-                        </ul>
-                      </div>
-                    </>
-                  )}
+                    );
+                  })}
                 </div>
               </div>
             )}
           </div>
 
-          {/* Agent Detailed Response (Step 4) */}
-          <div className={`flex flex-col w-full transition-all duration-500 ease-out transform ${step >= 4 ? 'opacity-100 translate-y-0 h-auto' : 'opacity-0 translate-y-4 pointer-events-none h-0 overflow-hidden'}`}>
+          {/* Agent Detailed Response (Step 5) */}
+          <div className={`flex flex-col w-full transition-all duration-500 ease-out transform ${step >= 5 ? 'opacity-100 translate-y-0 h-auto' : 'opacity-0 translate-y-4 pointer-events-none h-0 overflow-hidden'}`}>
             
             {/* Main Prompt Bubble */}
             <div className="bg-white rounded-[24px] rounded-tl-[8px] px-6 py-6 shadow-[0_2px_12px_rgba(0,0,0,0.02)] max-w-[92%] border border-gray-100/50 mb-2">
               <div className="space-y-6 text-[15px] text-[#333333] leading-[1.65] tracking-[0.01em] relative">
                 {/* 1. Show the Prompt Package prominently first */}
-                {longTextSection >= 0 && (
-                  <div className="opacity-0 animate-[fadeIn_0.5s_ease-out_forwards]">
-                    <div className="whitespace-pre-wrap text-[16px] text-[#111111] leading-[1.5] tracking-[0.02em]">
-                      {displayedPromptText.split('').map((char, index) => (
-                        <span 
-                          key={index} 
-                          className="opacity-0 animate-[textFadeIn_0.2s_ease-in_forwards]"
-                        >
-                          {char}
-                        </span>
-                      ))}
-                    </div>
+                <div className="opacity-0 animate-[fadeIn_0.5s_ease-out_forwards]">
+                  <div className="whitespace-pre-wrap text-[16px] text-[#111111] leading-[1.5] tracking-[0.02em]">
+                    {displayedPromptText.split('').map((char, index) => (
+                      <span 
+                        key={index} 
+                        className="opacity-0 animate-[textFadeIn_0.2s_ease-in_forwards]"
+                      >
+                        {char}
+                      </span>
+                    ))}
                   </div>
-                )}
-                
-                {/* Loading indicator while generating sections */}
-                {longTextSection < 3 && (
-                  <div className="flex space-x-1.5 items-center justify-start pt-2 pb-1">
-                    <div className="w-[5px] h-[5px] bg-[#A3A3A3] rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></div>
-                    <div className="w-[5px] h-[5px] bg-[#A3A3A3] rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></div>
-                    <div className="w-[5px] h-[5px] bg-[#A3A3A3] rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></div>
-                  </div>
-                )}
+                </div>
               </div>
             </div>
           </div>
 
-          {/* Agent Message (Step 5) */}
-          <div className={`flex w-full transition-all duration-500 ease-out transform delay-150 ${step >= 5 ? 'opacity-100 translate-y-0 h-auto' : 'opacity-0 translate-y-4 pointer-events-none h-0 overflow-hidden'}`}>
+          {/* Agent Message (Step 6) */}
+          <div className={`flex w-full transition-all duration-500 ease-out transform delay-150 ${step >= 6 ? 'opacity-100 translate-y-0 h-auto' : 'opacity-0 translate-y-4 pointer-events-none h-0 overflow-hidden'}`}>
             <div className="bg-white rounded-[24px] rounded-tl-[8px] px-5 py-4 shadow-[0_2px_12px_rgba(0,0,0,0.02)] max-w-[85%] border border-gray-100/50">
               <p className="text-[16px] text-[#111111] leading-[1.5] tracking-[0.02em]">
-                {step >= 5 ? <FadeInText text="我将会用提示词帮你生成一条变装视频。" delay={0.3} boldIndices={[4, 5, 6]} /> : '我将会用提示词帮你生成一条变装视频。'}
+                {step >= 6 ? <FadeInText text="我将会用提示词帮你生成一条变装视频。" delay={0.3} boldIndices={[4, 5, 6]} /> : '我将会用提示词帮你生成一条变装视频。'}
               </p>
             </div>
           </div>
 
-          {/* Agent Video Message (Step 6) */}
-          <div className={`flex w-full transition-all duration-500 ease-out transform delay-300 ${step >= 6 ? 'opacity-100 translate-y-0 h-auto' : 'opacity-0 translate-y-4 pointer-events-none h-0 overflow-hidden'}`}>
+          {/* Agent Video Message (Step 7) */}
+          <div className={`flex w-full transition-all duration-500 ease-out transform delay-300 ${step >= 7 ? 'opacity-100 translate-y-0 h-auto' : 'opacity-0 translate-y-4 pointer-events-none h-0 overflow-hidden'}`}>
             <div className="bg-white rounded-[24px] rounded-tl-[8px] p-2 shadow-[0_2px_12px_rgba(0,0,0,0.04)] max-w-[85%] border border-gray-100/50">
               <div className="w-full rounded-[18px] overflow-hidden bg-black/5 relative aspect-video">
                 <video 
