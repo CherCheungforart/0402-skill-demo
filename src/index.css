@@ -23,3 +23,12 @@
     transform: translateY(0);
   }
 }
+
+@keyframes textFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

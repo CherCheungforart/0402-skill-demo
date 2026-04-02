@@ -61,7 +61,7 @@ export default function Home() {
         const typingInterval = setInterval(() => {
           if (currentIndex <= fullText.length) {
             setDisplayedPromptText(fullText.substring(0, currentIndex));
-            currentIndex += 2; // Type 2 characters at a time for better speed
+            currentIndex += 1; // Type 1 character at a time for a more realistic feel
             
             // Auto scroll while typing
             if (chatContainerRef.current) {
@@ -72,9 +72,9 @@ export default function Home() {
             // Move to next section shortly after typing completes
             setTimeout(() => {
               setLongTextSection(prev => prev + 1);
-            }, 400);
+            }, 600);
           }
-        }, 15); // Fast typing speed
+        }, 25); // Slower typing speed (25ms per char instead of 15ms)
 
         return () => clearInterval(typingInterval);
       }
@@ -512,7 +512,14 @@ export default function Home() {
                 {longTextSection >= 0 && (
                   <div className="opacity-0 animate-[fadeIn_0.5s_ease-out_forwards]">
                     <div className="whitespace-pre-wrap text-[16px] text-[#111111] leading-[1.5] tracking-[0.02em]">
-                      {displayedPromptText}
+                      {displayedPromptText.split('').map((char, index) => (
+                        <span 
+                          key={index} 
+                          className="opacity-0 animate-[textFadeIn_0.2s_ease-in_forwards]"
+                        >
+                          {char}
+                        </span>
+                      ))}
                     </div>
                   </div>
                 )}
