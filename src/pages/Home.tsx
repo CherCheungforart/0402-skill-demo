@@ -515,7 +515,7 @@ export default function Home() {
                       {displayedPromptText}
                       {/* Blinking cursor while typing */}
                       {longTextSection === 0 && (
-                        <span className="inline-block w-1.5 h-4 bg-blue-500 ml-0.5 align-middle animate-pulse"></span>
+                        <span className="inline-block w-[2px] h-[15px] bg-[#111111] ml-0.5 align-middle animate-[pulse_0.8s_cubic-bezier(0.4,0,0.6,1)_infinite]"></span>
                       )}
                     </div>
                   </div>
