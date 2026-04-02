@@ -116,9 +116,14 @@ export default function Home() {
 
     // Step 4 Progressive Revelation Logic: Type Details Content
     if (step === 4) {
-      const detailsFullText = selectedImageId === 'image2' 
-        ? '1. 目标复述 \n \n - 主体锚定语：以 <图片> 中的 <浅棕色波浪长发、身穿青金花纹挂脖连衣裙的女性> 为 <主体>。 \n - 场景与色调沿用策略：完全沿用原图的浅草寺雷门背景（包含巨大的红底黑字纸灯笼与两侧朱红色大柱）以及白天自然柔和的真实光感。 \n - 运镜序列与衔接特性：总时长 15 秒，包含 2 秒的建立阶段、2 次各 3 秒的“径向模糊拉回再推入”循环运镜，最后进入长达 7 秒的近景终章平稳展示。各段自然衔接，突出纵深冲击感。 \n \n 2. 时间轴脚本 \n \n - 0 到 2 秒（建立阶段）：全景空间纵深展示，机位对准胸口，沿中轴线微仰角向前缓慢推入，速度先慢后快。 \n - 2 到 5 秒（第一次循环）：镜头迅速产生径向模糊并向后拉回至中景，速度递减至平稳，随后再次向前推入，展现衣物与环境细节。 \n - 5 到 8 秒（第二次循环）：再次触发径向模糊并迅速拉回，平稳后第三次向前推入，构图逐渐收紧至人物上半身。 \n - 8 到 15 秒（终章定帧）：镜头平缓推进至近景并保持平稳定格，重点展现人物面部轮廓、发丝细节与自然光影，画面缓慢收束。 \n \n 3. 质量核对清单 \n \n - [x] 时间轴使用整数秒划分（0-2秒、2-5秒、5-8秒、8-15秒）。 \n - [x] 未使用任何小数点或百分比数值。 \n - [x] 运镜序列严格遵循“推入 → 径向模糊拉回 → 再推入”的结构，且根据 15 秒时长设定为 2 次循环。 \n - [x] 已准确使用 <图片> 与 <主体> 尖括号锚点格式。 \n - [x] 径向模糊效果仅在向后拉回的时间段内出现。 \n - [x] 提示词包全篇使用正向描述，无否定句或限制句。'
-        : (selectedStyle === 'A' ? detailsTextA : detailsTextB);
+      let detailsFullText = '';
+      if (selectedImageId === 'image2') {
+        detailsFullText = '1. 目标复述 \n \n - 主体锚定语：以 <图片> 中的 <浅棕色波浪长发、身穿青金花纹挂脖连衣裙的女性> 为 <主体>。 \n - 场景与色调沿用策略：完全沿用原图的浅草寺雷门背景（包含巨大的红底黑字纸灯笼与两侧朱红色大柱）以及白天自然柔和的真实光感。 \n - 运镜序列与衔接特性：总时长 15 秒，包含 2 秒的建立阶段、2 次各 3 秒的“径向模糊拉回再推入”循环运镜，最后进入长达 7 秒的近景终章平稳展示。各段自然衔接，突出纵深冲击感。 \n \n 2. 时间轴脚本 \n \n - 0 到 2 秒（建立阶段）：全景空间纵深展示，机位对准胸口，沿中轴线微仰角向前缓慢推入，速度先慢后快。 \n - 2 到 5 秒（第一次循环）：镜头迅速产生径向模糊并向后拉回至中景，速度递减至平稳，随后再次向前推入，展现衣物与环境细节。 \n - 5 到 8 秒（第二次循环）：再次触发径向模糊并迅速拉回，平稳后第三次向前推入，构图逐渐收紧至人物上半身。 \n - 8 到 15 秒（终章定帧）：镜头平缓推进至近景并保持平稳定格，重点展现人物面部轮廓、发丝细节与自然光影，画面缓慢收束。 \n \n 3. 质量核对清单 \n \n - [x] 时间轴使用整数秒划分（0-2秒、2-5秒、5-8秒、8-15秒）。 \n - [x] 未使用任何小数点或百分比数值。 \n - [x] 运镜序列严格遵循“推入 → 径向模糊拉回 → 再推入”的结构，且根据 15 秒时长设定为 2 次循环。 \n - [x] 已准确使用 <图片> 与 <主体> 尖括号锚点格式。 \n - [x] 径向模糊效果仅在向后拉回的时间段内出现。 \n - [x] 提示词包全篇使用正向描述，无否定句或限制句。';
+      } else if (selectedImageId === 'image3') {
+        detailsFullText = '1. 目标复述 \n \n - 用你上传的人物图做主体一致性锚点（五官与气质一致），做 15s MV 变装转场；风格走复古成熟的 C 复古名媛；16:9 横屏；变装后第一个有效镜头先给面部。 \n \n 2. 三点校准（默认直接定） \n \n - 子风格：C 复古名媛 \n - 转场机制：推镜变焦 + 旋转擦拭 \n - 转场衔接动作：抬手举杯掠镜形成近景遮挡 + 杯口冷白高光作为衔接点 \n \n 3. 方案概述 \n \n - 前状态压低妆面与光影完成度，用日常空间的平淡做铺垫；中段用“举杯遮挡—推近—旋转擦拭”把变装自然衔接起来；后状态把惊艳集中在“脸部完成度 + 发型轮廓 + 肩颈线条 + 服装剪裁与反光点”同时落地，并把背景切到与原图明显不同的复古酒廊空间。 \n \n 4. 分镜脚本（4 镜） \n \n - 镜头1（1–3s）：中近景，日常前造型，前状态面部低完成度 \n - 镜头2（3–5s）：推镜到脸，抬手举杯掠镜遮挡，杯口高光闪一下作为衔接点 \n - 镜头3（5–9s）：旋转擦拭完成变装，后状态开场先给脸（近景），再带出肩颈与服装轮廓 \n - 镜头4（9–15s）：中景稳定展示 + 轻微跟进定帧，收尾做复古电影质感 \n \n 5. 输入增强（可复用） \n \n 我要做一个15秒的K-pop MV复古名媛变装转场，16:9横屏；参考<人物图1>做人脸与气质一致性锚点；前1–3秒为日常低完成度前状态；3–8秒完成主要变装；转场机制为推镜变焦+旋转擦拭；用抬手举杯掠镜形成遮挡，杯口冷白高光闪点作为转场衔接点；变装完成后的第一个有效镜头先以人物面部为中心，再展开肩颈线条、身形比例、服装轮廓与关键反光点；后背景切到木饰面复古酒廊空间并与原图背景明显不同；收尾用暖琥珀电影质感、颗粒与轻微曝光漂移收束。';
+      } else {
+        detailsFullText = selectedStyle === 'A' ? detailsTextA : detailsTextB;
+      }
       let currentIndex = 0;
       
       const typingInterval = setInterval(() => {
@@ -149,6 +154,8 @@ export default function Home() {
       let fullPromptText = '';
       if (selectedImageId === 'image2') {
         fullPromptText = '以<图片>中的<浅棕色波浪长发、身穿青底金色花纹挂脖连衣裙、手持带白色毛球黑色包包的年轻女性>为<主体>。场景完全沿用原图的日本浅草寺雷门环境，背景包含巨大的红底黑字纸灯笼与朱红色大柱，保持白天自然柔和的真实光感。在 0 到 2 秒，画面以全景建立空间纵深，镜头沿中轴线向<主体>胸口以不超过5度的微仰角缓慢推入，推入速度先慢后快；在 2 到 5 秒，镜头迅速带有径向模糊地向后拉回至中景，拉回速度逐渐减慢至平稳，随后再次向<主体>平滑推入；在 5 到 8 秒，镜头第二次迅速带有径向模糊向后拉回，速度递减至停稳后，第三次向<主体>推入，构图逐渐收紧至上半身；在 8 到 15 秒，镜头平稳过渡到<主体>的近景并定格，<主体>保持自然呼吸与轻微的重心调整，清晰展现五官轮廓、发丝细节与衣物材质，画面在柔和光影中缓慢收束。整个过程<主体>特征与穿搭保持高度一致，各段运镜衔接平滑自然。';
+      } else if (selectedImageId === 'image3') {
+        fullPromptText = '一个剪辑成转场运镜变装的视频，不要生成字幕和背景音乐，仅带有音效；\n画面比例为16:9横屏；\n参考<人物图1>中的人物作为主体（保持五官与脸部一致性、气质一致性、发型一致性）；\n（1～3秒，中近景）变装前：\n前造型：黑色日常细肩带上衣，深色直筒长裤，整体克制低戏剧性；\n动作：人物微微低头整理项链，再抬眼看向镜头，呼吸放慢；\n场景与氛围光感：日常室内暗背景空间，低照度环境光，画面真实可拍摄、对比度偏低；\n前状态面部表现：低修饰度、妆面存在感减弱、立体光影减弱、气色收敛、轮廓不过分锐利；\n子风格关键词：复古名媛、深夜酒廊气质、成熟疏离、被闪光灯捕捉的快照感；\n（3～12秒，无缝过渡转场变装，慢动作特写）：\n转场机制：推镜变焦 + 旋转擦拭；\n转场衔接动作：人物抬手举起细长高脚杯，杯口从画面下缘掠过镜头形成近景遮挡，镜头同步推近到面部；遮挡边缘出现一次冷白高光闪点作为衔接点，镜头顺势进入旋转擦拭；\n变装后的第一个有效镜头先以面部为中心：近景先建立后状态面部完成度（底妆更干净、五官光影更清晰、眼神更有压迫感但克制），发型轮廓更顺滑利落；随后镜头下移带出肩颈线条与锁骨结构，身形比例更收紧；\n后造型：黑色结构感短外套，内搭修身吊带上衣，下装为窄版半裙，尖头细带高跟鞋，小手包，金属耳饰形成克制反光点，剪裁硬挺、轮廓清楚；\n背景无缝切换为后场景：木饰面深色复古酒廊卡座空间，桌面烛台与旧镜面反射，空间纵深清晰，环境真实可拍摄；\n光线氛围：低照度暖琥珀主光，局部冷白边缘高光勾勒轮廓，暗部压低但保留结构；\n（13～15秒，中景到近景）收尾：\n后造型稳定展示：人物缓慢转身落座，回头看向镜头，停住定格，画面以人物面部为主要视觉焦点；\n镜头：轻微跟进后定住，形成MV预告片快照式定帧；\n收尾色调与质感：暖琥珀与深咖色阶统一收束，轻微曝光漂移，胶片颗粒与细密噪点叠加，高光边缘干净，反差克制但质感高级。';
       } else {
         fullPromptText = selectedStyle === 'A' 
           ? '一个剪辑成转场运镜变装的视频，不要生成字幕和背景音乐，仅带有音效；\n画面比例为 16:9 横屏；\n参考 <人物图1> 中的人物作为主体（保持五官与脸部一致性、发型一致性、气质一致性）；\n（1-3s，中近景）变装前：\n前造型：浅灰细肩带基础内搭，外搭米白薄款针织开衫，下装为深色直筒长裤，整体日常克制；\n动作：人物轻轻整理开衫领口，抬眼看向镜头，微微侧头；\n场景与氛围光感：与原图同类的日常室内空间，干净墙面，柔和自然光但对比度偏低，真实可拍摄；\n前状态面部表现：低修饰度、妆面存在感减弱、立体光影减弱、气色收敛、肤质更日常；\n子风格关键词：甜野少女、清透轻甜、真实生活感的精致整理、柔光快照质感；\n（3-12s，无缝过渡转场变装，慢动作特写，强化节奏变化）：\n转场机制：推镜变焦 + 旋转擦拭；\n触发信号：镜头快速推近到面部，发丝贴近镜头形成第一次遮挡，开衫衣角掠过镜头形成第二次遮挡，窗边出现一次冷白闪光作为节拍点；\n节奏变化：推镜明显加速，遮挡切换干脆，闪光瞬间完成形变；\n变装后的第一个有效镜头先以面部为中心：近景先建立后状态面部完成度（肤质更干净、五官光影更清晰、眼神更甜但更有主导感），发型轮廓更顺滑并带柔和高光边缘；随后镜头带出肩颈线条更清楚、身形比例更利落；\n后造型：短款合身针织上衣，百褶短裙，小珍珠项链，小体量硬挺包袋，发侧蝴蝶结发饰形成小面积高光点，轮廓清晰不松垮；\n背景无缝切换为后场景：复古公寓窗边梳妆台区域，旧木桌面与镜框、少量旧相框与桌面小摆件，空间类型与原图背景明显不同；\n光线氛围：窗边柔光与冷白边缘高光并存，低饱和冷蓝灰作为底色，亮部干净、暗部有结构；\n（13-15s，中景到近景）收尾：\n后造型稳定展示：人物轻轻抬手拨发，停住对镜微笑，镜头保持人物面部为主要视觉焦点；\n镜头：轻微跟进后定住，形成 MV 预告片快照式定帧；\n收尾色调与质感：低饱和冷蓝灰色阶，轻微曝光漂移，胶片颗粒与细密数码噪点叠加，高光边缘冷白干净，反差克制但质感高级。'
@@ -213,6 +220,13 @@ export default function Home() {
       if (selectedImageId === 'image2') {
         if (optionId === 'A') {
           // For image2, only option A proceeds to Step 3
+          setTimeout(() => {
+            setStep(3);
+          }, 500);
+        }
+      } else if (selectedImageId === 'image3') {
+        if (optionId === 'C') {
+          // For image3, only option C proceeds to Step 3
           setTimeout(() => {
             setStep(3);
           }, 500);
@@ -350,7 +364,7 @@ export default function Home() {
               </div>
               <div className="w-full rounded-[18px] overflow-hidden border border-gray-100 mt-1">
                 <img 
-                  src={selectedImageId === 'image2' ? '/aoxue17.jpeg' : '/vv3.jpg'}
+                  src={selectedImageId === 'image2' ? '/aoxue17.jpeg' : (selectedImageId === 'image3' ? '/yiman4.jpg' : '/vv3.jpg')}
                   alt="User uploaded selfie" 
                   className="w-full h-auto object-cover" 
                 />
@@ -422,12 +436,17 @@ export default function Home() {
                     { id: 'B', text: '仅沿用造型' },
                     { id: 'C', text: '仅沿用场景' },
                     { id: 'D', text: '其他' },
+                  ] : (selectedImageId === 'image3' ? [
+                    { id: 'A', text: '甜美风格的变装' },
+                    { id: 'B', text: '潮流风格的变装' },
+                    { id: 'C', text: '复古名媛（推荐）' },
+                    { id: 'D', text: 'Y2K风格的变装' },
                   ] : [
                     { id: 'A', text: '甜美风格的变装（推荐）' },
                     { id: 'B', text: '潮流风格的变装（推荐）' },
                     { id: 'C', text: '复古风格的变装' },
                     { id: 'D', text: 'Y2K风格的变装' },
-                  ]).map((option) => {
+                  ])).map((option) => {
                     const isSelected = selectedStyle === option.id;
                     return (
                       <button
@@ -466,7 +485,7 @@ export default function Home() {
                 className="w-[20px] h-[20px] object-contain [image-rendering:-webkit-optimize-contrast] [image-rendering:crisp-edges] -ml-[8px]"
               />
               <span className="text-[15px] text-[#8E8E93] font-normal tracking-[0.02em] leading-none -ml-[9px]">
-                {selectedImageId === 'image2' ? '调用技能推拉运镜' : '调用技能：kpop-mv-outfit-transition'}
+                {selectedImageId === 'image2' ? '调用技能：推拉运镜' : '调用技能：kpop-mv-outfit-transition'}
               </span>
             </div>
             
@@ -548,7 +567,7 @@ export default function Home() {
             <div className="bg-white rounded-[24px] rounded-tl-[8px] p-2 shadow-[0_2px_12px_rgba(0,0,0,0.04)] max-w-[85%] border border-gray-100/50">
               <div className="w-full rounded-[18px] overflow-hidden bg-black/5 relative flex items-center justify-center">
                 <video 
-                  src={selectedImageId === 'image2' ? "/camera-move.mp4" : (selectedStyle === 'A' ? "/outfit-transition-a.mp4" : "/outfit-transition.mp4")}
+                  src={selectedImageId === 'image2' ? "/camera-move.mp4" : (selectedImageId === 'image3' ? '/vintage-outfit.mp4' : (selectedStyle === 'A' ? "/outfit-transition-a.mp4" : "/outfit-transition.mp4"))}
                   className="w-full h-auto max-h-[400px] object-contain"
                   controls
                   playsInline
@@ -576,7 +595,7 @@ export default function Home() {
           <div className={`px-4 pt-2 pb-1 transition-all duration-300 ${isImageSelected ? 'opacity-100 h-[80px]' : 'opacity-0 h-0 overflow-hidden'}`}>
              <div className="h-full w-[60px] relative rounded-[12px] overflow-hidden border border-gray-200/50 shadow-sm bg-white p-1">
                <div className="w-full h-full rounded-[8px] overflow-hidden">
-                 <img src={selectedImageId === 'image2' ? '/aoxue17.jpeg' : '/vv3.jpg'} alt="Selected" className="w-full h-full object-cover" />
+                 <img src={selectedImageId === 'image2' ? '/aoxue17.jpeg' : (selectedImageId === 'image3' ? '/yiman4.jpg' : '/vv3.jpg')} alt="Selected" className="w-full h-full object-cover" />
                </div>
                <button 
                  className="absolute -top-1 -right-1 bg-gray-200/80 text-gray-600 rounded-full p-0.5 active:bg-gray-300"
