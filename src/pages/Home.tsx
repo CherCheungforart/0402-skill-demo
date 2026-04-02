@@ -298,21 +298,17 @@ export default function Home() {
         {/* Header */}
         <div className="flex items-center justify-between px-4 pb-3 pt-1 shrink-0 bg-[#F6F7F9] z-20 relative">
           <button 
-            className="flex items-center p-2 -ml-2 text-black active:opacity-70 transition-opacity"
+            className="flex items-center p-2 -ml-2 active:opacity-70 transition-opacity"
             onClick={handleBackClick}
           >
-            <ChevronLeft size={28} strokeWidth={1.5} className="-ml-1" />
+            <img src="/left-button.png" alt="Back" className="w-6 h-6 object-contain" />
           </button>
           <div className="flex flex-col items-center justify-center absolute left-1/2 transform -translate-x-1/2 pointer-events-none">
-            <h1 className="text-[17px] font-bold text-black leading-tight tracking-wide">AI 创作</h1>
-            <span className="text-[11px] text-[#A3A3A3] font-medium mt-0.5">Seedance 2.0</span>
+            <img src="/main-title.png" alt="AI 创作" className="h-[22px] object-contain mb-0.5" />
+            <img src="/sub-title.png" alt="Seedance 2.0" className="h-[12px] object-contain" />
           </div>
-          <button className="p-2 -mr-2 text-black active:opacity-70 transition-opacity">
-            {/* 2-line Hamburger Menu */}
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="black" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <line x1="4" y1="9" x2="20" y2="9"></line>
-              <line x1="4" y1="15" x2="20" y2="15"></line>
-            </svg>
+          <button className="p-2 -mr-2 active:opacity-70 transition-opacity">
+            <img src="/right-button.png" alt="Menu" className="w-6 h-6 object-contain" />
           </button>
         </div>
 
@@ -616,15 +612,15 @@ export default function Home() {
         
         {/* Attachment Drawer */}
         <div 
-          className="absolute bottom-0 left-0 w-full h-[240px] bg-white z-10 transition-transform duration-300 ease-out border-t border-gray-100 px-3 pt-6 pb-8"
+          className="absolute bottom-0 left-0 w-full h-[240px] bg-white z-10 transition-transform duration-300 ease-out border-t border-gray-100 px-6 pt-6 pb-8"
           style={{ transform: isDrawerOpen ? 'translateY(0)' : 'translateY(100%)' }}
         >
-          <h3 className="text-[14px] font-medium text-gray-500 mb-4 ml-1">选择照片或视频</h3>
-          <div className="grid grid-cols-4 gap-1.5">
+          <h3 className="text-[14px] font-medium text-gray-500 mb-4">选择照片或视频</h3>
+          <div className="grid grid-cols-4 gap-3">
             {/* The target image */}
             <div 
               onClick={handleImageSelect}
-              className="aspect-square overflow-hidden cursor-pointer relative group border border-gray-100 shadow-sm"
+              className="aspect-square rounded-[16px] overflow-hidden cursor-pointer relative group border border-gray-100 shadow-sm"
             >
               <img src="/vv3.jpg" alt="Gallery item" className="w-full h-full object-cover transition-transform group-active:scale-105" />
               <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors" />
@@ -635,7 +631,7 @@ export default function Home() {
             
             {/* Dummy gallery items */}
             {[1, 2, 3].map(i => (
-              <div key={i} className="aspect-square bg-gray-100 overflow-hidden border border-gray-50" />
+              <div key={i} className="aspect-square rounded-[16px] bg-gray-100 overflow-hidden border border-gray-50" />
             ))}
           </div>
         </div>
