@@ -611,7 +611,7 @@ export default function Home() {
                 
                 {inputText || isImageSelected ? (
                   <button className={`w-[36px] h-[36px] flex items-center justify-center transition-all shrink-0 active:scale-95 ${
-                      inputText === '我要变装' && isImageSelected && !isTyping
+                      (inputText === '我要变装' || inputText === '我要生成推拉运镜') && isImageSelected && !isTyping
                         ? '' 
                         : 'opacity-50 cursor-not-allowed'
                     }`}
