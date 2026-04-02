@@ -278,7 +278,7 @@ export default function Home() {
             <div className="bg-white rounded-[24px] rounded-tr-[8px] p-2 shadow-[0_2px_12px_rgba(0,0,0,0.04)] max-w-[75%] flex flex-col items-end">
               <div className="px-3 pt-2 pb-2">
                 <p className="text-[16px] text-[#111111] leading-[1.5] tracking-[0.02em]">
-                  {step >= 1 ? <FadeInText text="我要变装" delay={0.2} /> : '我要变装'}
+                  我要变装
                 </p>
               </div>
               <div className="w-full rounded-[18px] overflow-hidden border border-gray-100 mt-1">
@@ -394,7 +394,7 @@ export default function Home() {
                 className="w-[20px] h-[20px] object-contain [image-rendering:-webkit-optimize-contrast] [image-rendering:crisp-edges]"
               />
               <span className="text-[15px] text-[#8E8E93] font-normal tracking-[0.02em] leading-none">
-                {step >= 3 ? <FadeInText text="调用技能：kpop-mv-outfit-transition" delay={0.3} speed={0.015} /> : '调用技能：kpop-mv-outfit-transition'}
+                调用技能：kpop-mv-outfit-transition
               </span>
             </div>
             
