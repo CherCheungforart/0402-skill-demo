@@ -91,13 +91,18 @@ export default function Home() {
   // Track selected image to determine which path to run
   const [selectedImageId, setSelectedImageId] = useState<'image1' | 'image2' | null>(null);
 
-  // Only step 0 goes to step 1 automatically when image is selected and text typed? No.
-  // We want to wait for the user to explicitly click "send".
-  // So we remove any auto-advancing from step 0 to step 1 if it existed.
   // Auto-scroll to bottom when step changes
   useEffect(() => {
     if (chatContainerRef.current) {
       chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
+    }
+    
+    // Automatically trigger Step 2 (Agent's question) after user sends the message in Step 1
+    if (step === 1) {
+      const timer = setTimeout(() => {
+        setStep(2);
+      }, 600); // 600ms delay to feel natural before AI responds
+      return () => clearTimeout(timer);
     }
     
     // Automatically trigger Step 4 (Details typing) after Step 3 is shown
@@ -241,7 +246,7 @@ export default function Home() {
 
   const handlePlusClick = (e: React.MouseEvent) => {
     e.stopPropagation();
-    if (!isImageSelected) {
+    if (step === 0 && !isImageSelected) {
       setIsDrawerOpen(!isDrawerOpen);
     }
   };
@@ -277,11 +282,6 @@ export default function Home() {
       setIsImageSelected(false);
       
       setStep(1); // Proceed to show user message bubble for both images
-      
-      // Delay the agent's first question until the user's message is fully visible
-      setTimeout(() => {
-        setStep(2);
-      }, 500);
     }
   };
 
@@ -341,7 +341,7 @@ export default function Home() {
         >
           
           {/* User Message 1 */}
-          <div className={`flex w-full justify-end transition-all duration-500 ease-out transform ${step >= 1 || selectedImageId === 'image2' ? 'opacity-100 translate-y-0 h-auto' : 'opacity-0 translate-y-4 pointer-events-none h-0 overflow-hidden'}`}>
+          <div className={`flex w-full justify-end transition-all duration-500 ease-out transform ${step >= 1 ? 'opacity-100 translate-y-0 h-auto' : 'opacity-0 translate-y-4 pointer-events-none h-0 overflow-hidden'}`}>
             <div className="bg-white rounded-[24px] rounded-tr-[8px] p-2 shadow-[0_2px_12px_rgba(0,0,0,0.04)] max-w-[75%] flex flex-col items-end">
               <div className="px-3 pt-2 pb-2">
                 <p className="text-[16px] text-[#111111] leading-[1.5] tracking-[0.02em]">
