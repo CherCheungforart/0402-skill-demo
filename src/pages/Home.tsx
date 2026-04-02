@@ -383,7 +383,7 @@ export default function Home() {
                 }`}>
                   {[
                     { id: 'A', text: '生成图片' },
-                    { id: 'B', text: '生成视频' },
+                    { id: 'B', text: '生成视频（推荐）' },
                   ].map((option) => {
                     const isSelected = selectedFunction === option.id;
                     return (
