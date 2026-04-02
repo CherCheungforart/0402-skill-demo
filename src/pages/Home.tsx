@@ -3,7 +3,7 @@ import { X, Plus, ChevronLeft } from 'lucide-react';
 
 export default function Home() {
   const [inputText, setInputText] = useState('');
-  const [step, setStep] = useState(1); // Start at step 1 to automatically show the first message
+  const [step, setStep] = useState(0); // Start at step 0 for a completely blank initial screen
   
   // Track selection state within the single Agent bubble (Step 2)
   const [innerStep, setInnerStep] = useState<'function' | 'style'>('function');
@@ -80,7 +80,9 @@ export default function Home() {
   }, [step, innerStep, longTextSection]);
 
   const handleScreenClick = () => {
-    if (step === 1) {
+    if (step === 0) {
+      setStep(1); // First click reveals the user's initial message
+    } else if (step === 1) {
       setStep(2); // Agent's question (Function choice)
     } else if (step >= 6 && step < 13) {
       setStep(prev => prev + 1);
@@ -115,8 +117,8 @@ export default function Home() {
 
   const handleBackClick = (e: React.MouseEvent) => {
     e.stopPropagation();
-    // Reset all states to restart the demo
-    setStep(1);
+    // Reset all states to restart the demo to the completely blank screen
+    setStep(0);
     setInnerStep('function');
     setSelectedFunction(null);
     setSelectedStyle(null);
@@ -539,8 +541,8 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Hint Overlay (Only visible at step 1 before any interaction) */}
-          <div className={`absolute bottom-24 left-0 w-full flex justify-center pointer-events-none transition-opacity duration-700 z-50 ${step === 1 ? 'opacity-100' : 'opacity-0'}`}>
+          {/* Hint Overlay (Only visible at step 0 before any interaction) */}
+          <div className={`absolute bottom-24 left-0 w-full flex justify-center pointer-events-none transition-opacity duration-700 z-50 ${step === 0 ? 'opacity-100' : 'opacity-0'}`}>
             <div className="bg-black/40 text-white/90 px-4 py-1.5 rounded-full text-[13px] font-medium tracking-wide backdrop-blur-md animate-pulse">
               点击屏幕任意位置继续
             </div>
