@@ -462,7 +462,7 @@ export default function Home() {
             {/* 3. Collapsible Details Section (Now under the toggle) */}
             {step >= 4 && (
               <div className={`overflow-hidden transition-all duration-500 ease-in-out pl-3 pr-7 ${isDetailsExpanded ? 'max-h-[2000px] opacity-100 mt-3 mb-2' : 'max-h-0 opacity-0 mt-0 mb-0'}`}>
-                <div className="border-l-[2px] border-[#E5E5E5] pl-4 py-1 ml-[11px] text-[13px] text-[#8E8E93] leading-[1.65] text-justify tracking-[0.01em] whitespace-pre-wrap">
+                <div className="border-l-[2px] border-[#E5E5E5] pl-4 py-1 text-[13px] text-[#8E8E93] leading-[1.65] text-justify tracking-[0.01em] whitespace-pre-wrap -ml-[7px]">
                   {displayedDetailsText.split('\n').map((line, lineIndex) => {
                     if (line.trim() === '') return <div key={lineIndex} className="h-3"></div>;
                     const isHeader = /^\d）/.test(line);
