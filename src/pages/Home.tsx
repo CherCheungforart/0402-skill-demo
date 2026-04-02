@@ -539,13 +539,12 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Hint Overlay (Only visible at step 0) - Removed 
-          <div className={`absolute inset-0 flex items-center justify-center pointer-events-none transition-opacity duration-500 z-50 ${step === 0 ? 'opacity-100' : 'opacity-0'}`}>
-            <div className="bg-black/60 text-white px-6 py-3 rounded-full text-[15px] font-medium tracking-wide backdrop-blur-sm animate-bounce">
-              点击屏幕开始对话
+          {/* Hint Overlay (Only visible at step 1 before any interaction) */}
+          <div className={`absolute bottom-24 left-0 w-full flex justify-center pointer-events-none transition-opacity duration-700 z-50 ${step === 1 ? 'opacity-100' : 'opacity-0'}`}>
+            <div className="bg-black/40 text-white/90 px-4 py-1.5 rounded-full text-[13px] font-medium tracking-wide backdrop-blur-md animate-pulse">
+              点击屏幕任意位置继续
             </div>
           </div>
-          */}
 
         </div>
 
