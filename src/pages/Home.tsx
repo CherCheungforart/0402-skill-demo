@@ -436,9 +436,9 @@ export default function Home() {
               <img 
                 src="/skill-icon-2.png" 
                 alt="System Icon" 
-                className="w-[20px] h-[20px] object-contain [image-rendering:-webkit-optimize-contrast] [image-rendering:crisp-edges]"
+                className="w-[20px] h-[20px] object-contain [image-rendering:-webkit-optimize-contrast] [image-rendering:crisp-edges] -ml-[4px]"
               />
-              <span className="text-[15px] text-[#8E8E93] font-normal tracking-[0.02em] leading-none">
+              <span className="text-[15px] text-[#8E8E93] font-normal tracking-[0.02em] leading-none -ml-[4px]">
                 调用技能：kpop-mv-outfit-transition
               </span>
             </div>
@@ -453,7 +453,7 @@ export default function Home() {
                   }}
                   className="flex items-center space-x-1 text-[15px] text-[#8E8E93] font-normal active:opacity-70 transition-opacity tracking-[0.02em] leading-none"
                 >
-                  <span>{isDetailsExpanded ? '收起完整方案结构' : '展开完整方案结构'}</span>
+                  <span className="-ml-[8px]">{isDetailsExpanded ? '收起完整方案结构' : '展开完整方案结构'}</span>
                   {isDetailsExpanded ? <ChevronUp size={15} className="text-[#8E8E93]" strokeWidth={1.5} /> : <ChevronDown size={15} className="text-[#8E8E93]" strokeWidth={1.5} />}
                 </button>
               </div>
