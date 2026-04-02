@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { X, Plus } from 'lucide-react';
+import { X, Plus, ChevronLeft } from 'lucide-react';
 
 export default function Home() {
   const [inputText, setInputText] = useState('');
@@ -113,6 +113,16 @@ export default function Home() {
     }
   };
 
+  const handleBackClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    // Reset all states to restart the demo
+    setStep(1);
+    setInnerStep('function');
+    setSelectedFunction(null);
+    setSelectedStyle(null);
+    setLongTextSection(0);
+  };
+
   return (
     <div className="min-h-screen bg-gray-100 flex items-center justify-center py-8 font-sans">
       {/* iOS Container: 393x852 */}
@@ -147,10 +157,13 @@ export default function Home() {
 
         {/* Header */}
         <div className="flex items-center justify-between px-4 pb-3 pt-1 shrink-0 bg-[#F6F7F9] z-20 relative">
-          <button className="p-2 -ml-2 text-black active:opacity-70 transition-opacity">
-            <X size={24} strokeWidth={1.5} />
+          <button 
+            className="flex items-center p-2 -ml-2 text-black active:opacity-70 transition-opacity"
+            onClick={handleBackClick}
+          >
+            <ChevronLeft size={28} strokeWidth={1.5} className="-ml-1" />
           </button>
-          <div className="flex flex-col items-center justify-center">
+          <div className="flex flex-col items-center justify-center absolute left-1/2 transform -translate-x-1/2 pointer-events-none">
             <h1 className="text-[17px] font-bold text-black leading-tight tracking-wide">AI 创作</h1>
             <span className="text-[11px] text-[#A3A3A3] font-medium mt-0.5">Seedance 2.0</span>
           </div>
