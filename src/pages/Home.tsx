@@ -351,10 +351,10 @@ export default function Home() {
               <div className="opacity-0 animate-[fadeIn_0.5s_ease-out_forwards] px-7 pt-1.5">
                 <button 
                   onClick={() => setIsDetailsExpanded(!isDetailsExpanded)}
-                  className="flex items-center space-x-1 text-[13px] text-[#8E8E93] font-medium active:opacity-70 transition-opacity"
+                  className="flex items-center space-x-1 text-[13px] text-[#8E8E93] font-medium active:opacity-70 transition-opacity tracking-[0.02em] leading-none"
                 >
                   <span>{isDetailsExpanded ? '收起完整方案结构' : '展开完整方案结构'}</span>
-                  {isDetailsExpanded ? <ChevronUp size={14} className="ml-0.5" /> : <ChevronDown size={14} className="ml-0.5" />}
+                  {isDetailsExpanded ? <ChevronUp size={13} className="ml-0.5 text-[#8E8E93]" strokeWidth={2} /> : <ChevronDown size={13} className="ml-0.5 text-[#8E8E93]" strokeWidth={2} />}
                 </button>
               </div>
             )}
