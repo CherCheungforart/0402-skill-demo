@@ -346,11 +346,11 @@ export default function Home() {
           </div>
 
           {/* Agent Detailed Response (Step 4) */}
-          <div className={`flex w-full transition-all duration-500 ease-out transform ${step >= 4 ? 'opacity-100 translate-y-0 h-auto' : 'opacity-0 translate-y-4 pointer-events-none h-0 overflow-hidden'}`}>
-            <div className="bg-white rounded-[24px] rounded-tl-[8px] px-6 py-6 shadow-[0_2px_12px_rgba(0,0,0,0.02)] max-w-[92%] border border-gray-100/50">
-              
+          <div className={`flex flex-col w-full transition-all duration-500 ease-out transform ${step >= 4 ? 'opacity-100 translate-y-0 h-auto' : 'opacity-0 translate-y-4 pointer-events-none h-0 overflow-hidden'}`}>
+            
+            {/* Main Prompt Bubble */}
+            <div className="bg-white rounded-[24px] rounded-tl-[8px] px-6 py-6 shadow-[0_2px_12px_rgba(0,0,0,0.02)] max-w-[92%] border border-gray-100/50 mb-2">
               <div className="space-y-6 text-[15px] text-[#333333] leading-[1.65] tracking-[0.01em] relative">
-                
                 {/* 1. Show the Prompt Package prominently first */}
                 {longTextSection >= 0 && (
                   <div className="opacity-0 animate-[fadeIn_0.5s_ease-out_forwards]">
@@ -361,127 +361,7 @@ export default function Home() {
                     </div>
                   </div>
                 )}
-
-                {/* 2. Expand/Collapse Toggle */}
-                {longTextSection >= 1 && (
-                  <div className="opacity-0 animate-[fadeIn_0.5s_ease-out_forwards]">
-                    <button 
-                      onClick={() => setIsDetailsExpanded(!isDetailsExpanded)}
-                      className="flex items-center space-x-1.5 text-[13px] text-[#8E8E93] font-medium active:opacity-70 transition-opacity"
-                    >
-                      <span>{isDetailsExpanded ? '收起完整方案结构' : '展开完整方案结构'}</span>
-                      {isDetailsExpanded ? <ChevronUp size={14} /> : <ChevronDown size={14} />}
-                    </button>
-                  </div>
-                )}
-
-                {/* 3. Collapsible Details Section (Greyed out, smaller font) */}
-                {longTextSection >= 2 && (
-                  <div className={`overflow-hidden transition-all duration-500 ease-in-out ${isDetailsExpanded ? 'max-h-[2000px] opacity-100 mt-4' : 'max-h-0 opacity-0 mt-0'}`}>
-                    <div className="pl-3 border-l-[2px] border-gray-200/60 space-y-5 text-[13.5px] text-[#8E8E93] leading-[1.6]">
-                      {selectedStyle === 'A' ? (
-                        <>
-                          {/* Style A Content - Greyed Out */}
-                          <div>
-                            <h3 className="font-bold text-[#70757A] mb-1.5 text-[14px]">1）目标复述</h3>
-                            <ul className="space-y-1.5 pl-1">
-                              <li className="flex items-start">你要：15s MV 变装转场，风格更甜美；主体用你上传的人物图做一致性锚点；默认 16:9 横屏。</li>
-                              <li className="flex items-start">节奏：1-3s 建立前状态，3-8s 完成主变装，变装后第一个有效镜头先给脸，再展开后造型与背景；后背景空间类型与原图明显不同。</li>
-                            </ul>
-                          </div>
-                          <div>
-                            <h3 className="font-bold text-[#70757A] mb-1.5 text-[14px]">2）三点校准（默认直接定）</h3>
-                            <ul className="space-y-1.5 pl-1">
-                              <li className="flex items-start">主体画像：甜美清透、轻熟但克制</li>
-                              <li className="flex items-start">子风格：A 甜野少女</li>
-                              <li className="flex items-start">触发信号：发丝近景遮挡 + 开衫衣角掠镜遮挡 + 窗边冷白闪光一次</li>
-                            </ul>
-                          </div>
-                          <div>
-                            <h3 className="font-bold text-[#70757A] mb-1.5 text-[14px]">3）方案概述</h3>
-                            <p className="pl-1">用“低完成度日常前状态”做反差，后状态走甜野少女的轻甜高级感；后场景从原图日常墙面切换到“复古公寓窗边梳妆台”类型空间，形成强差异；收尾用冷蓝灰电影质感压住廉价甜。</p>
-                          </div>
-                          <div>
-                            <h3 className="font-bold text-[#70757A] mb-1.5 text-[14px]">4）分镜脚本（4 镜）</h3>
-                            <ul className="space-y-2 pl-1">
-                              <li>镜头1（1-3s）：中近景，前状态素净、低完成度，动作轻</li>
-                              <li>镜头2（3-5s）：推镜到脸，发丝遮挡，衣角掠镜</li>
-                              <li>镜头3（5-9s）：旋转擦拭完成变装，后状态开场先给脸（近景）</li>
-                              <li>镜头4（9-15s）：中景稳定展示 + 微跟进定帧，收尾做冷雾颗粒质感</li>
-                            </ul>
-                          </div>
-                          <div>
-                            <h3 className="font-bold text-[#70757A] mb-1.5 text-[14px]">5）输入增强（可复制复用）</h3>
-                            <p className="pl-1">用我上传的人物图做主体一致性锚点，做 15s K-pop MV 变装转场，16:9 横屏；子风格 A 甜野少女；前 1-3 秒前状态面部低完成度、低光影强调；3-8 秒完成主变装；转场固定推镜变焦 + 旋转擦拭，触发用发丝近景遮挡 + 开衫衣角掠镜遮挡 + 窗边冷白闪光一次；变装后第一个有效镜头先给面部，再展开肩颈线条、身形比例与完整后造型；后背景空间类型与原图明显不同；收尾用低饱和冷蓝灰电影质感、颗粒与轻微曝光漂移。</p>
-                          </div>
-                          <div>
-                            <h3 className="font-bold text-[#70757A] mb-1.5 text-[14px]">6）迭代策略（你只要选一项）</h3>
-                            <ul className="space-y-1.5 pl-1">
-                              <li className="flex items-start">甜得更梦幻：我把后场景改成“雾感花房玻璃廊”，其余节奏不变</li>
-                              <li className="flex items-start">甜得更高级：我把后造型改成“短外套 + 窄裙更利落”，保留甜野关键词不跑偏</li>
-                            </ul>
-                          </div>
-                        </>
-                      ) : (
-                        <>
-                          {/* Style B Content - Greyed Out */}
-                          <div>
-                            <h3 className="font-bold text-[#70757A] mb-1.5 text-[14px]">1）目标复述</h3>
-                            <ul className="space-y-1.5 pl-1">
-                              <li className="flex items-start">保留这张图的人物五官、暖棕长发和原始气质。</li>
-                              <li className="flex items-start">不继承当前豹纹内搭与米白墙室内背景。</li>
-                              <li className="flex items-start">做一版更符合你本人的变装：轻熟、利落、带一点小野感，整体高级但不夸张。</li>
-                            </ul>
-                          </div>
-                          <div>
-                            <h3 className="font-bold text-[#70757A] mb-1.5 text-[14px]">2）三点校准</h3>
-                            <ul className="space-y-1.5 pl-1">
-                              <li className="flex items-start">主体画像：暖棕长发、轻熟、随性、带一点攻击性的时髦感。</li>
-                              <li className="flex items-start">后造型子风格：默认 B 街头混搭；它最能放大你原图里本来就有的自然时髦度和小性感。</li>
-                              <li className="flex items-start">触发信号：默认抬手带起外套边缘遮挡；比单纯甩发更稳，也更有穿搭完成度。</li>
-                            </ul>
-                          </div>
-                          <div>
-                            <h3 className="font-bold text-[#70757A] mb-1.5 text-[14px]">3）方案概述</h3>
-                            <ul className="space-y-1.5 pl-1">
-                              <li className="flex items-start">前状态压成普通室内、低修饰度、低完成度。</li>
-                              <li className="flex items-start">后状态切进开阔室外旧街区结构空间，让人物、造型和背景一起完成升级。</li>
-                              <li className="flex items-start">节奏上前 2-3 秒触发，8 秒前完成主要变装；变装后的第一个有效镜头先落在人物面部，再展开后造型和背景。</li>
-                            </ul>
-                          </div>
-                          <div>
-                            <h3 className="font-bold text-[#70757A] mb-1.5 text-[14px]">4）分镜脚本</h3>
-                            <ul className="space-y-2 pl-1">
-                              <li>
-                                <div className="font-medium text-[#70757A]">镜头1</div>
-                                <div className="mt-0.5 text-[#A3A3A3]">半身近景，人物穿基础灰色上衣与普通日常下装，停留在简单室内墙边。面部低修饰度，神态接近日常未整理完成状态。</div>
-                              </li>
-                              <li>
-                                <div className="font-medium text-[#70757A]">镜头2</div>
-                                <div className="mt-0.5 text-[#A3A3A3]">镜头快速推近到肩颈与发丝，主体抬手转身，外套边缘或衣摆掠过镜头形成遮挡。遮挡一出现就触发变装，不拖节奏。</div>
-                              </li>
-                              <li>
-                                <div className="font-medium text-[#70757A]">镜头3</div>
-                                <div className="mt-0.5 text-[#A3A3A3]">变装完成后的第一个有效镜头先给面部：近景落脸，先建立脸部吸引力、发型轮廓和后状态光影。然后顺势展开到后造型：短款修身上衣、利落短夹克、宽松做旧牛仔裤、厚底运动鞋。背景切到有建筑切面、水泥地和旧墙透视的室外街区空间。</div>
-                              </li>
-                              <li>
-                                <div className="font-medium text-[#70757A]">镜头4</div>
-                                <div className="mt-0.5 text-[#A3A3A3]">中景稳定展示，镜头从面部附近轻轻拉开到中景。展示肩颈线条、腰胯比例、牛仔裤垂坠、外套轮廓和整体气场。结尾再做冷调颗粒和定帧质感收束。</div>
-                              </li>
-                            </ul>
-                          </div>
-                          <div>
-                            <h3 className="font-bold text-[#70757A] mb-1.5 text-[14px]">5）输入增强</h3>
-                            <ul className="space-y-1.5 pl-1">
-                              <li className="flex items-start">我要变装。保留原图脸部和暖棕长发特征，不继承原图服装和室内背景；前状态保持低修饰度、低光影强调、普通日常感；后造型走 B 街头混搭，偏轻熟、小野、不过分张扬，穿短款修身上衣、利落短夹克和宽松做旧牛仔裤；用推镜变焦 + 旋转擦拭，通过外套边缘掠镜触发；后背景切到有建筑切面、水泥地和旧墙透视的开阔街区空间；要求变装后的第一个有效镜头先以面部为中心，再展开到后造型与背景。</li>
-                            </ul>
-                          </div>
-                        </>
-                      )}
-                    </div>
-                  </div>
-                )}
-
+                
                 {/* Loading indicator while generating sections */}
                 {longTextSection < 3 && (
                   <div className="flex space-x-1.5 items-center justify-start pt-2 pb-1">
@@ -492,6 +372,129 @@ export default function Home() {
                 )}
               </div>
             </div>
+
+            {/* 2. Expand/Collapse Toggle (Outside the bubble) */}
+            {longTextSection >= 1 && (
+              <div className="opacity-0 animate-[fadeIn_0.5s_ease-out_forwards] px-3 pt-1">
+                <button 
+                  onClick={() => setIsDetailsExpanded(!isDetailsExpanded)}
+                  className="flex items-center space-x-1 text-[13px] text-[#8E8E93] font-medium active:opacity-70 transition-opacity"
+                >
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-[#8E8E93] opacity-80">
+                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                  </svg>
+                  <span>{isDetailsExpanded ? '收起完整方案结构' : '展开完整方案结构'}</span>
+                  {isDetailsExpanded ? <ChevronUp size={14} className="ml-1" /> : <ChevronDown size={14} className="ml-1" />}
+                </button>
+              </div>
+            )}
+
+            {/* 3. Collapsible Details Section (Outside the bubble) */}
+            {longTextSection >= 2 && (
+              <div className={`overflow-hidden transition-all duration-500 ease-in-out px-4 ${isDetailsExpanded ? 'max-h-[2000px] opacity-100 mt-3' : 'max-h-0 opacity-0 mt-0'}`}>
+                <div className="border-l-[2px] border-[#E5E5E5] pl-3 py-1 space-y-4 text-[13px] text-[#8E8E93] leading-[1.6]">
+                  {selectedStyle === 'A' ? (
+                    <>
+                      {/* Style A Content - Greyed Out */}
+                      <div>
+                        <h3 className="font-semibold text-[#70757A] mb-1">1）目标复述</h3>
+                        <ul className="space-y-1 pl-1">
+                          <li className="flex items-start">你要：15s MV 变装转场，风格更甜美；主体用你上传的人物图做一致性锚点；默认 16:9 横屏。</li>
+                          <li className="flex items-start">节奏：1-3s 建立前状态，3-8s 完成主变装，变装后第一个有效镜头先给脸，再展开后造型与背景；后背景空间类型与原图明显不同。</li>
+                        </ul>
+                      </div>
+                      <div>
+                        <h3 className="font-semibold text-[#70757A] mb-1">2）三点校准（默认直接定）</h3>
+                        <ul className="space-y-1 pl-1">
+                          <li className="flex items-start">主体画像：甜美清透、轻熟但克制</li>
+                          <li className="flex items-start">子风格：A 甜野少女</li>
+                          <li className="flex items-start">触发信号：发丝近景遮挡 + 开衫衣角掠镜遮挡 + 窗边冷白闪光一次</li>
+                        </ul>
+                      </div>
+                      <div>
+                        <h3 className="font-semibold text-[#70757A] mb-1">3）方案概述</h3>
+                        <p className="pl-1">用“低完成度日常前状态”做反差，后状态走甜野少女的轻甜高级感；后场景从原图日常墙面切换到“复古公寓窗边梳妆台”类型空间，形成强差异；收尾用冷蓝灰电影质感压住廉价甜。</p>
+                      </div>
+                      <div>
+                        <h3 className="font-semibold text-[#70757A] mb-1">4）分镜脚本（4 镜）</h3>
+                        <ul className="space-y-1.5 pl-1">
+                          <li>镜头1（1-3s）：中近景，前状态素净、低完成度，动作轻</li>
+                          <li>镜头2（3-5s）：推镜到脸，发丝遮挡，衣角掠镜</li>
+                          <li>镜头3（5-9s）：旋转擦拭完成变装，后状态开场先给脸（近景）</li>
+                          <li>镜头4（9-15s）：中景稳定展示 + 微跟进定帧，收尾做冷雾颗粒质感</li>
+                        </ul>
+                      </div>
+                      <div>
+                        <h3 className="font-semibold text-[#70757A] mb-1">5）输入增强（可复制复用）</h3>
+                        <p className="pl-1">用我上传的人物图做主体一致性锚点，做 15s K-pop MV 变装转场，16:9 横屏；子风格 A 甜野少女；前 1-3 秒前状态面部低完成度、低光影强调；3-8 秒完成主变装；转场固定推镜变焦 + 旋转擦拭，触发用发丝近景遮挡 + 开衫衣角掠镜遮挡 + 窗边冷白闪光一次；变装后第一个有效镜头先给面部，再展开肩颈线条、身形比例与完整后造型；后背景空间类型与原图明显不同；收尾用低饱和冷蓝灰电影质感、颗粒与轻微曝光漂移。</p>
+                      </div>
+                      <div>
+                        <h3 className="font-semibold text-[#70757A] mb-1">6）迭代策略（你只要选一项）</h3>
+                        <ul className="space-y-1 pl-1">
+                          <li className="flex items-start">甜得更梦幻：我把后场景改成“雾感花房玻璃廊”，其余节奏不变</li>
+                          <li className="flex items-start">甜得更高级：我把后造型改成“短外套 + 窄裙更利落”，保留甜野关键词不跑偏</li>
+                        </ul>
+                      </div>
+                    </>
+                  ) : (
+                    <>
+                      {/* Style B Content - Greyed Out */}
+                      <div>
+                        <h3 className="font-semibold text-[#70757A] mb-1">1）目标复述</h3>
+                        <ul className="space-y-1 pl-1">
+                          <li className="flex items-start">保留这张图的人物五官、暖棕长发和原始气质。</li>
+                          <li className="flex items-start">不继承当前豹纹内搭与米白墙室内背景。</li>
+                          <li className="flex items-start">做一版更符合你本人的变装：轻熟、利落、带一点小野感，整体高级但不夸张。</li>
+                        </ul>
+                      </div>
+                      <div>
+                        <h3 className="font-semibold text-[#70757A] mb-1">2）三点校准</h3>
+                        <ul className="space-y-1 pl-1">
+                          <li className="flex items-start">主体画像：暖棕长发、轻熟、随性、带一点攻击性的时髦感。</li>
+                          <li className="flex items-start">后造型子风格：默认 B 街头混搭；它最能放大你原图里本来就有的自然时髦度和小性感。</li>
+                          <li className="flex items-start">触发信号：默认抬手带起外套边缘遮挡；比单纯甩发更稳，也更有穿搭完成度。</li>
+                        </ul>
+                      </div>
+                      <div>
+                        <h3 className="font-semibold text-[#70757A] mb-1">3）方案概述</h3>
+                        <ul className="space-y-1 pl-1">
+                          <li className="flex items-start">前状态压成普通室内、低修饰度、低完成度。</li>
+                          <li className="flex items-start">后状态切进开阔室外旧街区结构空间，让人物、造型和背景一起完成升级。</li>
+                          <li className="flex items-start">节奏上前 2-3 秒触发，8 秒前完成主要变装；变装后的第一个有效镜头先落在人物面部，再展开后造型和背景。</li>
+                        </ul>
+                      </div>
+                      <div>
+                        <h3 className="font-semibold text-[#70757A] mb-1">4）分镜脚本</h3>
+                        <ul className="space-y-1.5 pl-1">
+                          <li>
+                            <div className="font-medium text-[#70757A]">镜头1</div>
+                            <div className="mt-0.5 text-[#A3A3A3]">半身近景，人物穿基础灰色上衣与普通日常下装，停留在简单室内墙边。面部低修饰度，神态接近日常未整理完成状态。</div>
+                          </li>
+                          <li>
+                            <div className="font-medium text-[#70757A]">镜头2</div>
+                            <div className="mt-0.5 text-[#A3A3A3]">镜头快速推近到肩颈与发丝，主体抬手转身，外套边缘或衣摆掠过镜头形成遮挡。遮挡一出现就触发变装，不拖节奏。</div>
+                          </li>
+                          <li>
+                            <div className="font-medium text-[#70757A]">镜头3</div>
+                            <div className="mt-0.5 text-[#A3A3A3]">变装完成后的第一个有效镜头先给面部：近景落脸，先建立脸部吸引力、发型轮廓和后状态光影。然后顺势展开到后造型：短款修身上衣、利落短夹克、宽松做旧牛仔裤、厚底运动鞋。背景切到有建筑切面、水泥地和旧墙透视的室外街区空间。</div>
+                          </li>
+                          <li>
+                            <div className="font-medium text-[#70757A]">镜头4</div>
+                            <div className="mt-0.5 text-[#A3A3A3]">中景稳定展示，镜头从面部附近轻轻拉开到中景。展示肩颈线条、腰胯比例、牛仔裤垂坠、外套轮廓和整体气场。结尾再做冷调颗粒和定帧质感收束。</div>
+                          </li>
+                        </ul>
+                      </div>
+                      <div>
+                        <h3 className="font-semibold text-[#70757A] mb-1">5）输入增强</h3>
+                        <ul className="space-y-1 pl-1">
+                          <li className="flex items-start">我要变装。保留原图脸部和暖棕长发特征，不继承原图服装和室内背景；前状态保持低修饰度、低光影强调、普通日常感；后造型走 B 街头混搭，偏轻熟、小野、不过分张扬，穿短款修身上衣、利落短夹克和宽松做旧牛仔裤；用推镜变焦 + 旋转擦拭，通过外套边缘掠镜触发；后背景切到有建筑切面、水泥地和旧墙透视的开阔街区空间；要求变装后的第一个有效镜头先以面部为中心，再展开到后造型与背景。</li>
+                        </ul>
+                      </div>
+                    </>
+                  )}
+                </div>
+              </div>
+            )}
           </div>
 
           {/* Agent Message (Step 5) */}
