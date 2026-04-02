@@ -606,28 +606,39 @@ export default function Home() {
         </div>
         
         {/* Attachment Drawer */}
-        <div 
-          className="absolute bottom-0 left-0 w-full h-[240px] bg-white z-10 transition-transform duration-300 ease-out border-t border-gray-100 px-6 pt-6 pb-8"
-          style={{ transform: isDrawerOpen ? 'translateY(0)' : 'translateY(100%)' }}
-        >
-          <h3 className="text-[14px] font-medium text-gray-500 mb-4">选择照片或视频</h3>
-          <div className="grid grid-cols-4 gap-3">
-            {/* The target image */}
-            <div 
-              onClick={handleImageSelect}
-              className="aspect-square rounded-[16px] overflow-hidden cursor-pointer relative group border border-gray-100 shadow-sm"
-            >
-              <img src="/vv3.jpg" alt="Gallery item" className="w-full h-full object-cover transition-transform group-active:scale-105" />
-              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors" />
-              <div className="absolute bottom-1 right-1 bg-black/40 backdrop-blur-sm rounded-full p-1 opacity-0 group-hover:opacity-100 transition-opacity">
-                <ImageIcon size={12} color="white" />
-              </div>
+        <div className={`absolute bottom-0 left-0 right-0 bg-white rounded-t-[24px] shadow-[0_-8px_30px_rgba(0,0,0,0.12)] transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] z-40 ${isDrawerOpen ? 'translate-y-0' : 'translate-y-full'}`}>
+          <div className="p-5 pb-8">
+            <div className="flex justify-between items-center mb-5">
+              <h2 className="text-[18px] font-bold text-[#111111]">选择素材图片</h2>
+              <button 
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setIsDrawerOpen(false);
+                }}
+                className="p-1.5 rounded-full bg-gray-100 text-gray-600 active:scale-95 transition-transform"
+              >
+                <X size={18} strokeWidth={2.5} />
+              </button>
             </div>
             
-            {/* Dummy gallery items */}
-            {[1, 2, 3].map(i => (
-              <div key={i} className="aspect-square rounded-[16px] bg-gray-100 overflow-hidden border border-gray-50" />
-            ))}
+            <div className="grid grid-cols-4 gap-3 mt-[20px]">
+              {/* The target image */}
+              <div 
+                onClick={handleImageSelect}
+                className="aspect-square rounded-[16px] overflow-hidden cursor-pointer relative group border border-gray-100 shadow-sm"
+              >
+                <img src="/vv3.jpg" alt="Gallery item" className="w-full h-full object-cover transition-transform group-active:scale-105" />
+                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors" />
+                <div className="absolute bottom-1 right-1 bg-black/40 backdrop-blur-sm rounded-full p-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                  <ImageIcon size={12} color="white" />
+                </div>
+              </div>
+              
+              {/* Dummy gallery items */}
+              {[1, 2, 3].map(i => (
+                <div key={i} className="aspect-square rounded-[16px] bg-gray-100 overflow-hidden border border-gray-50" />
+              ))}
+            </div>
           </div>
         </div>
         
