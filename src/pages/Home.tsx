@@ -356,7 +356,7 @@ export default function Home() {
                 {/* Function Options (A. Image / B. Video) */}
                 <div className={`absolute w-full top-0 left-0 flex flex-col space-y-2 transition-all duration-500 ease-in-out ${
                   innerStep === 'function' 
-                    ? 'opacity-100 translate-x-0 pointer-events-auto' 
+                    ? 'opacity-100 translate-x-0 pointer-events-auto delay-700' 
                     : 'opacity-0 -translate-x-4 pointer-events-none'
                 }`}>
                   {[
@@ -392,7 +392,7 @@ export default function Home() {
                 {/* Style Options (A/B/C/D) */}
                 <div className={`absolute w-full top-0 left-0 flex flex-col space-y-2 transition-all duration-500 ease-in-out ${
                   innerStep === 'style' 
-                    ? 'opacity-100 translate-x-0 pointer-events-auto' 
+                    ? 'opacity-100 translate-x-0 pointer-events-auto delay-[800ms]' 
                     : 'opacity-0 translate-x-4 pointer-events-none'
                 }`}>
                   {[
