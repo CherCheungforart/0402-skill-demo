@@ -543,7 +543,7 @@ export default function Home() {
 
           {/* Hint Overlay (Only visible at step 0 before any interaction) */}
           <div className={`absolute inset-0 flex items-center justify-center pointer-events-none transition-opacity duration-700 z-50 ${step === 0 ? 'opacity-100' : 'opacity-0'}`}>
-            <div className="bg-black/60 text-white/95 px-6 py-2.5 rounded-full text-[15px] font-medium tracking-wider backdrop-blur-md animate-pulse shadow-lg">
+            <div className="bg-black/30 text-white/95 px-6 py-2.5 rounded-full text-[15px] font-medium tracking-wider backdrop-blur-md animate-pulse shadow-md">
               点击屏幕任意位置继续
             </div>
           </div>
