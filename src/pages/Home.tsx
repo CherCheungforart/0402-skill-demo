@@ -89,7 +89,7 @@ export default function Home() {
   const chatContainerRef = useRef<HTMLDivElement>(null);
 
   // Track selected image to determine which path to run
-  const [selectedImageId, setSelectedImageId] = useState<'image1' | 'image2' | null>(null);
+  const [selectedImageId, setSelectedImageId] = useState<'image1' | 'image2' | 'image3' | null>(null);
 
   // Auto-scroll to bottom when step changes
   useEffect(() => {
@@ -251,7 +251,7 @@ export default function Home() {
     }
   };
 
-  const handleImageSelect = (e: React.MouseEvent, imageId: 'image1' | 'image2' = 'image1') => {
+  const handleImageSelect = (e: React.MouseEvent, imageId: 'image1' | 'image2' | 'image3' = 'image1') => {
     e.stopPropagation();
     setIsDrawerOpen(false);
     setIsImageSelected(true);
@@ -664,8 +664,20 @@ export default function Home() {
                 </div>
               </div>
               
+              {/* The 3rd target image (Added) */}
+              <div 
+                onClick={(e) => handleImageSelect(e, 'image3')}
+                className="aspect-square rounded-[16px] overflow-hidden cursor-pointer relative group border border-gray-100 shadow-sm"
+              >
+                <img src="/vv3.jpg" alt="Gallery item 3" className="w-full h-full object-cover transition-transform group-active:scale-105" />
+                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors" />
+                <div className="absolute bottom-1 right-1 bg-black/40 backdrop-blur-sm rounded-full p-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                  <ImageIcon size={12} color="white" />
+                </div>
+              </div>
+              
               {/* Dummy gallery items */}
-              {[1, 2].map(i => (
+              {[1].map(i => (
                 <div key={i} className="aspect-square rounded-[16px] bg-gray-100 overflow-hidden border border-gray-50" />
               ))}
             </div>
