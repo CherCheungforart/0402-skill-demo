@@ -362,7 +362,7 @@ export default function Home() {
           <div className={`flex w-full transition-all duration-500 ease-out transform ${step >= 2 ? 'opacity-100 translate-y-0 h-auto' : 'opacity-0 translate-y-4 pointer-events-none h-0 overflow-hidden'}`}>
             <div className="bg-white rounded-[24px] rounded-tl-[8px] px-5 py-4 shadow-[0_2px_12px_rgba(0,0,0,0.02)] w-[90%]">
               {/* Question Text transitions based on innerStep */}
-              <p className={`text-[16px] text-[#111111] leading-[1.5] tracking-[0.02em] mb-3 transition-opacity duration-300 ${selectedImageId === 'image2' && innerStep === 'style' ? '' : 'whitespace-nowrap'}`}>
+              <p className="text-[16px] text-[#111111] leading-[1.5] tracking-[0.02em] mb-3 transition-opacity duration-300 w-full break-words">
                 {step >= 2 && (
                   innerStep === 'function' 
                     ? <FadeInText key="function" text="你需要使用什么功能？" delay={0.3} /> 
