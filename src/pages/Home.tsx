@@ -536,10 +536,10 @@ export default function Home() {
           {/* Agent Video Message (Step 7) */}
           <div className={`flex w-full transition-all duration-500 ease-out transform delay-300 ${step >= 7 ? 'opacity-100 translate-y-0 h-auto' : 'opacity-0 translate-y-4 pointer-events-none h-0 overflow-hidden'}`}>
             <div className="bg-white rounded-[24px] rounded-tl-[8px] p-2 shadow-[0_2px_12px_rgba(0,0,0,0.04)] max-w-[85%] border border-gray-100/50">
-              <div className={`w-full rounded-[18px] overflow-hidden bg-black/5 relative ${selectedImageId === 'image2' ? 'aspect-video' : 'aspect-[3/4]'}`}>
+              <div className="w-full rounded-[18px] overflow-hidden bg-black/5 relative flex items-center justify-center">
                 <video 
                   src={selectedImageId === 'image2' ? "/camera-move.mp4" : (selectedStyle === 'A' ? "/outfit-transition-a.mp4" : "/outfit-transition.mp4")}
-                  className="w-full h-full object-cover"
+                  className="w-full h-auto max-h-[400px] object-contain"
                   controls
                   playsInline
                   preload="metadata"
