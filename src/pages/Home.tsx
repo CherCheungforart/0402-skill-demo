@@ -337,18 +337,18 @@ export default function Home() {
 
           {/* System Notification (Step 3) */}
           <div className={`flex flex-col px-2 pt-3 pb-1 transition-all duration-500 ease-out transform delay-150 ${step >= 3 ? 'opacity-100 translate-y-0 h-auto' : 'opacity-0 translate-y-4 pointer-events-none h-0 overflow-hidden'}`}>
-            <div className="flex items-center space-x-[4px]">
+            <div className="flex items-center space-x-[6px] pl-2">
               <img 
                 src="/flower-icon.png" 
                 alt="System Icon" 
-                className="w-[22px] h-[22px] object-contain mix-blend-multiply contrast-[1.5] text-black bg-[#f6f7f9]"
+                className="w-[24px] h-[24px] object-contain mix-blend-multiply contrast-[1.5] text-black bg-[#f6f7f9]"
               />
-              <span className="text-[13px] text-[#8E8E93] font-medium tracking-[0.01em] leading-none mb-[1px]">调用技能：kpop-mv-outfit-transition</span>
+              <span className="text-[13px] text-[#8E8E93] font-medium tracking-[0.02em] leading-none mb-[1px]">调用技能：kpop-mv-outfit-transition</span>
             </div>
             
             {/* 2. Expand/Collapse Toggle (Now under System Notification) */}
             {longTextSection >= 1 && (
-              <div className="opacity-0 animate-[fadeIn_0.5s_ease-out_forwards] pl-7 pt-1">
+              <div className="opacity-0 animate-[fadeIn_0.5s_ease-out_forwards] px-10 pt-1.5">
                 <button 
                   onClick={() => setIsDetailsExpanded(!isDetailsExpanded)}
                   className="flex items-center space-x-1 text-[13px] text-[#8E8E93] font-medium active:opacity-70 transition-opacity"
@@ -361,8 +361,8 @@ export default function Home() {
 
             {/* 3. Collapsible Details Section (Now under the toggle) */}
             {longTextSection >= 2 && (
-              <div className={`overflow-hidden transition-all duration-500 ease-in-out pl-7 pr-2 ${isDetailsExpanded ? 'max-h-[2000px] opacity-100 mt-2 mb-2' : 'max-h-0 opacity-0 mt-0 mb-0'}`}>
-                <div className="border-l-[2px] border-[#E5E5E5] pl-3 py-1 space-y-4 text-[13px] text-[#8E8E93] leading-[1.6]">
+              <div className={`overflow-hidden transition-all duration-500 ease-in-out px-10 ${isDetailsExpanded ? 'max-h-[2000px] opacity-100 mt-3 mb-2' : 'max-h-0 opacity-0 mt-0 mb-0'}`}>
+                <div className="border-l-[2px] border-[#E5E5E5] pl-4 py-1 space-y-4 text-[13px] text-[#8E8E93] leading-[1.65] text-justify tracking-[0.01em]">
                   {selectedStyle === 'A' ? (
                     <>
                       {/* Style A Content - Greyed Out */}
