@@ -311,23 +311,12 @@ export default function Home() {
         <div className="h-[47px] flex items-center justify-between px-6 text-[15px] font-semibold tracking-tighter shrink-0 bg-[#F6F7F9] z-20">
           <span className="text-black">8:00</span>
           <div className="flex items-center space-x-[5px]">
-            {/* Signal */}
-            <svg width="18" height="12" viewBox="0 0 18 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <rect y="8" width="3" height="4" rx="1" fill="black"/>
-              <rect x="5" y="6" width="3" height="6" rx="1" fill="black"/>
-              <rect x="10" y="3" width="3" height="9" rx="1" fill="black"/>
-              <rect x="15" width="3" height="12" rx="1" fill="black"/>
-            </svg>
-            {/* Wi-Fi */}
-            <svg width="16" height="12" viewBox="0 0 16 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path fillRule="evenodd" clipRule="evenodd" d="M8 12C9.10457 12 10 11.1046 10 10C10 8.89543 9.10457 8 8 8C6.89543 8 6 8.89543 6 10C6 11.1046 6.89543 12 8 12ZM8 6.5C10.2091 6.5 12 7.84315 12 9.5C12 9.77614 12.2239 10 12.5 10C12.7761 10 13 9.77614 13 9.5C13 7.01472 10.7614 5 8 5C5.23858 5 3 7.01472 3 9.5C3 9.77614 3.22386 10 3.5 10C3.77614 10 4 9.77614 4 9.5C4 7.84315 5.79086 6.5 8 6.5ZM8 3.5C11.3137 3.5 14 5.51472 14 8C14 8.27614 14.2239 8.5 14.5 8.5C14.7761 8.5 15 8.27614 15 8C15 4.68629 11.866 2 8 2C4.13401 2 1 4.68629 1 8C1 8.27614 1.22386 8.5 1.5 8.5C1.77614 8.5 2 8.27614 2 8C2 5.51472 4.68629 3.5 8 3.5ZM8 0.5C12.4183 0.5 16 3.41015 16 7C16 7.27614 16.2239 7.5 16.5 7.5C16.7761 7.5 17 7.27614 17 7C17 2.85786 12.9706 -1 8 -1C3.02944 -1 -1 2.85786 -1 7C-1 7.27614 -0.776142 7.5 -0.5 7.5C-0.223858 7.5 0 7.27614 0 7C0 3.41015 3.58172 0.5 8 0.5Z" fill="black"/>
-            </svg>
-            {/* Battery */}
-            <svg width="25" height="12" viewBox="0 0 25 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <rect x="0.5" y="0.5" width="21" height="11" rx="2.5" stroke="black"/>
-              <path d="M23 4V8C24.1046 8 25 7.10457 25 6C25 4.89543 24.1046 4 23 4Z" fill="black"/>
-              <rect x="2" y="2" width="18" height="8" rx="1.5" fill="black"/>
-            </svg>
+            {/* Signal Icon */}
+            <img src="/Signal.png" alt="Signal" className="w-[18px] h-[12px] object-contain" />
+            {/* Connection Icon */}
+            <img src="/Connection.png" alt="Connection" className="w-[16px] h-[12px] object-contain" />
+            {/* Battery Icon */}
+            <img src="/Battery.png" alt="Battery" className="w-[25px] h-[12px] object-contain" />
           </div>
         </div>
 
