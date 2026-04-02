@@ -343,7 +343,7 @@ export default function Home() {
                 alt="System Icon" 
                 className="w-[22px] h-[22px] object-contain mix-blend-multiply contrast-[1.5] text-black bg-[#f6f7f9]"
               />
-              <span className="text-[15px] text-[#8E8E93] font-normal tracking-[0.01em] leading-none mb-[1px]">调用技能：kpop-mv-outfit-transition</span>
+              <span className="text-[13px] text-[#8E8E93] font-medium tracking-[0.01em] leading-none mb-[1px]">调用技能：kpop-mv-outfit-transition</span>
             </div>
             
             {/* 2. Expand/Collapse Toggle (Now under System Notification) */}
