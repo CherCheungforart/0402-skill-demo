@@ -482,7 +482,7 @@ export default function Home() {
                 <div className="border-l-[2px] border-[#E5E5E5] pl-4 py-1 text-[13px] text-[#8E8E93] leading-[1.65] text-justify tracking-[0.01em] whitespace-pre-wrap -ml-[7px]">
                   {displayedDetailsText.split('\n').map((line, lineIndex) => {
                     if (line.trim() === '') return <div key={lineIndex} className="h-3"></div>;
-                    const isHeader = /^\d）/.test(line);
+                    const isHeader = /^\d[）\.]/.test(line.trim());
                     return (
                       <div key={lineIndex} className={isHeader ? "font-bold text-[#70757A] mt-4 mb-1.5 text-[14px] first:mt-0" : "pl-1"}>
                         {line.split('').map((char, charIndex) => (
