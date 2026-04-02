@@ -1,6 +1,20 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { X, Plus, ChevronLeft, Image as ImageIcon, Send, ChevronDown, ChevronUp } from 'lucide-react';
 
+const FadeInText = ({ text, delay = 0, speed = 0.025, boldIndices = [] }: { text: string, delay?: number, speed?: number, boldIndices?: number[] }) => (
+  <>
+    {text.split('').map((char, index) => (
+      <span 
+        key={index} 
+        className={`opacity-0 animate-[textFadeIn_0.2s_ease-in_forwards] ${boldIndices.includes(index) ? 'font-semibold' : ''}`}
+        style={{ animationDelay: `${delay + index * speed}s` }}
+      >
+        {char}
+      </span>
+    ))}
+  </>
+);
+
 export default function Home() {
   const [inputText, setInputText] = useState('');
   const [step, setStep] = useState(0); // Start at step 0 for a completely blank initial screen
@@ -264,7 +278,7 @@ export default function Home() {
             <div className="bg-white rounded-[24px] rounded-tr-[8px] p-2 shadow-[0_2px_12px_rgba(0,0,0,0.04)] max-w-[75%] flex flex-col items-end">
               <div className="px-3 pt-2 pb-2">
                 <p className="text-[16px] text-[#111111] leading-[1.5] tracking-[0.02em]">
-                  我要变装
+                  {step >= 1 ? <FadeInText text="我要变装" delay={0.2} /> : '我要变装'}
                 </p>
               </div>
               <div className="w-full rounded-[18px] overflow-hidden border border-gray-100 mt-1">
@@ -282,7 +296,11 @@ export default function Home() {
             <div className="bg-white rounded-[24px] rounded-tl-[8px] px-5 py-4 shadow-[0_2px_12px_rgba(0,0,0,0.02)] w-[90%]">
               {/* Question Text transitions based on innerStep */}
               <p className={`text-[16px] text-[#111111] leading-[1.5] tracking-[0.02em] mb-3 transition-opacity duration-300 whitespace-nowrap`}>
-                {innerStep === 'function' ? '你需要使用什么功能？' : '好的，你需要什么样的变装效果？'}
+                {step >= 2 && (
+                  innerStep === 'function' 
+                    ? <FadeInText key="function" text="你需要使用什么功能？" delay={0.3} /> 
+                    : <FadeInText key="style" text="好的，你需要什么样的变装效果？" delay={0.1} />
+                )}
               </p>
               
               {/* Options List */}
@@ -375,7 +393,9 @@ export default function Home() {
                 alt="System Icon" 
                 className="w-[20px] h-[20px] object-contain [image-rendering:-webkit-optimize-contrast] [image-rendering:crisp-edges]"
               />
-              <span className="text-[15px] text-[#8E8E93] font-normal tracking-[0.02em] leading-none">调用技能：kpop-mv-outfit-transition</span>
+              <span className="text-[15px] text-[#8E8E93] font-normal tracking-[0.02em] leading-none">
+                {step >= 3 ? <FadeInText text="调用技能：kpop-mv-outfit-transition" delay={0.3} speed={0.015} /> : '调用技能：kpop-mv-outfit-transition'}
+              </span>
             </div>
             
             {/* 2. Expand/Collapse Toggle (Now under System Notification) */}
@@ -540,7 +560,7 @@ export default function Home() {
           <div className={`flex w-full transition-all duration-500 ease-out transform delay-150 ${step >= 5 ? 'opacity-100 translate-y-0 h-auto' : 'opacity-0 translate-y-4 pointer-events-none h-0 overflow-hidden'}`}>
             <div className="bg-white rounded-[24px] rounded-tl-[8px] px-5 py-4 shadow-[0_2px_12px_rgba(0,0,0,0.02)] max-w-[85%] border border-gray-100/50">
               <p className="text-[16px] text-[#111111] leading-[1.5] tracking-[0.02em]">
-                我将会用<strong className="font-semibold">提示词包</strong>帮你生成一条变装视频。
+                {step >= 5 ? <FadeInText text="我将会用提示词包帮你生成一条变装视频。" delay={0.3} boldIndices={[4, 5, 6, 7]} /> : '我将会用提示词包帮你生成一条变装视频。'}
               </p>
             </div>
           </div>
