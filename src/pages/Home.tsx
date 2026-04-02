@@ -576,13 +576,8 @@ export default function Home() {
               />
               <div className="flex items-center space-x-2.5 ml-2">
                 {!inputText && !isImageSelected && (
-                  <button className="w-[36px] h-[36px] rounded-full border-[1.5px] border-[#111111] flex items-center justify-center text-[#111111] active:scale-95 transition-transform bg-white shrink-0">
-                    {/* Voice/Waveform Icon */}
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M11 5L6 9H2v6h4l5 4V5z"></path>
-                      <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
-                      <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
-                    </svg>
+                  <button className="w-[36px] h-[36px] flex items-center justify-center active:scale-95 transition-transform shrink-0">
+                    <img src="/voice-icon.png" alt="Voice" className="w-full h-full object-contain" />
                   </button>
                 )}
                 
@@ -600,9 +595,9 @@ export default function Home() {
                 ) : (
                   <button 
                     onClick={handlePlusClick}
-                    className={`w-[36px] h-[36px] rounded-full border-[1.5px] border-[#111111] flex items-center justify-center text-[#111111] transition-transform shrink-0 ${isDrawerOpen ? 'rotate-45 bg-gray-100' : 'bg-white active:scale-95'}`}
+                    className={`w-[36px] h-[36px] flex items-center justify-center transition-transform shrink-0 active:scale-95 ${isDrawerOpen ? 'rotate-45' : ''}`}
                   >
-                    <Plus size={18} strokeWidth={2} />
+                    <img src="/plus-icon.png" alt="Plus" className="w-full h-full object-contain" />
                   </button>
                 )}
               </div>
