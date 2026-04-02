@@ -436,9 +436,9 @@ export default function Home() {
               <img 
                 src="/skill-icon-2.png" 
                 alt="System Icon" 
-                className="w-[20px] h-[20px] object-contain [image-rendering:-webkit-optimize-contrast] [image-rendering:crisp-edges] -ml-[4px]"
+                className="w-[20px] h-[20px] object-contain [image-rendering:-webkit-optimize-contrast] [image-rendering:crisp-edges] -ml-[8px]"
               />
-              <span className="text-[15px] text-[#8E8E93] font-normal tracking-[0.02em] leading-none -ml-[4px]">
+              <span className="text-[15px] text-[#8E8E93] font-normal tracking-[0.02em] leading-none -ml-[9px]">
                 调用技能：kpop-mv-outfit-transition
               </span>
             </div>
