@@ -88,6 +88,9 @@ export default function Home() {
   
   const chatContainerRef = useRef<HTMLDivElement>(null);
 
+  // Track selected image to determine which path to run
+  const [selectedImageId, setSelectedImageId] = useState<'image1' | 'image2' | null>(null);
+
   // Auto-scroll to bottom when step changes
   useEffect(() => {
     if (chatContainerRef.current) {
@@ -113,7 +116,9 @@ export default function Home() {
 
     // Step 4 Progressive Revelation Logic: Type Details Content
     if (step === 4) {
-      const detailsFullText = selectedStyle === 'A' ? detailsTextA : detailsTextB;
+      const detailsFullText = selectedImageId === 'image2' 
+        ? '**1. 目标复述** \n \n - **主体锚定语**：以 `<图片>` 中的 `<浅棕色波浪长发、身穿青金花纹挂脖连衣裙的女性>` 为 `<主体>`。 \n - **场景与色调沿用策略**：完全沿用原图的浅草寺雷门背景（包含巨大的红底黑字纸灯笼与两侧朱红色大柱）以及白天自然柔和的真实光感。 \n - **运镜序列与衔接特性**：总时长 15 秒，包含 2 秒的建立阶段、2 次各 3 秒的“径向模糊拉回再推入”循环运镜，最后进入长达 7 秒的近景终章平稳展示。各段自然衔接，突出纵深冲击感。 \n \n **2. 时间轴脚本** \n \n - **0 到 2 秒（建立阶段）**：全景空间纵深展示，机位对准胸口，沿中轴线微仰角向前缓慢推入，速度先慢后快。 \n - **2 到 5 秒（第一次循环）**：镜头迅速产生径向模糊并向后拉回至中景，速度递减至平稳，随后再次向前推入，展现衣物与环境细节。 \n - **5 到 8 秒（第二次循环）**：再次触发径向模糊并迅速拉回，平稳后第三次向前推入，构图逐渐收紧至人物上半身。 \n - **8 到 15 秒（终章定帧）**：镜头平缓推进至近景并保持平稳定格，重点展现人物面部轮廓、发丝细节与自然光影，画面缓慢收束。 \n \n **3. 质量核对清单** \n \n - [x] 时间轴使用整数秒划分（0-2秒、2-5秒、5-8秒、8-15秒）。 \n - [x] 未使用任何小数点或百分比数值。 \n - [x] 运镜序列严格遵循“推入 → 径向模糊拉回 → 再推入”的结构，且根据 15 秒时长设定为 2 次循环。 \n - [x] 已准确使用 `<图片>` 与 `<主体>` 尖括号锚点格式。 \n - [x] 径向模糊效果仅在向后拉回的时间段内出现。 \n - [x] 提示词包全篇使用正向描述，无否定句或限制句。'
+        : (selectedStyle === 'A' ? detailsTextA : detailsTextB);
       let currentIndex = 0;
       
       const typingInterval = setInterval(() => {
@@ -141,9 +146,14 @@ export default function Home() {
 
     // Step 5 Progressive Revelation Logic: Type Prompt Text
     if (step === 5) {
-      const fullPromptText = selectedStyle === 'A' 
-        ? '一个剪辑成转场运镜变装的视频，不要生成字幕和背景音乐，仅带有音效；\n画面比例为 16:9 横屏；\n参考 <人物图1> 中的人物作为主体（保持五官与脸部一致性、发型一致性、气质一致性）；\n（1-3s，中近景）变装前：\n前造型：浅灰细肩带基础内搭，外搭米白薄款针织开衫，下装为深色直筒长裤，整体日常克制；\n动作：人物轻轻整理开衫领口，抬眼看向镜头，微微侧头；\n场景与氛围光感：与原图同类的日常室内空间，干净墙面，柔和自然光但对比度偏低，真实可拍摄；\n前状态面部表现：低修饰度、妆面存在感减弱、立体光影减弱、气色收敛、肤质更日常；\n子风格关键词：甜野少女、清透轻甜、真实生活感的精致整理、柔光快照质感；\n（3-12s，无缝过渡转场变装，慢动作特写，强化节奏变化）：\n转场机制：推镜变焦 + 旋转擦拭；\n触发信号：镜头快速推近到面部，发丝贴近镜头形成第一次遮挡，开衫衣角掠过镜头形成第二次遮挡，窗边出现一次冷白闪光作为节拍点；\n节奏变化：推镜明显加速，遮挡切换干脆，闪光瞬间完成形变；\n变装后的第一个有效镜头先以面部为中心：近景先建立后状态面部完成度（肤质更干净、五官光影更清晰、眼神更甜但更有主导感），发型轮廓更顺滑并带柔和高光边缘；随后镜头带出肩颈线条更清楚、身形比例更利落；\n后造型：短款合身针织上衣，百褶短裙，小珍珠项链，小体量硬挺包袋，发侧蝴蝶结发饰形成小面积高光点，轮廓清晰不松垮；\n背景无缝切换为后场景：复古公寓窗边梳妆台区域，旧木桌面与镜框、少量旧相框与桌面小摆件，空间类型与原图背景明显不同；\n光线氛围：窗边柔光与冷白边缘高光并存，低饱和冷蓝灰作为底色，亮部干净、暗部有结构；\n（13-15s，中景到近景）收尾：\n后造型稳定展示：人物轻轻抬手拨发，停住对镜微笑，镜头保持人物面部为主要视觉焦点；\n镜头：轻微跟进后定住，形成 MV 预告片快照式定帧；\n收尾色调与质感：低饱和冷蓝灰色阶，轻微曝光漂移，胶片颗粒与细密数码噪点叠加，高光边缘冷白干净，反差克制但质感高级。'
-        : '一个剪辑成转场运镜变装的视频，不要生成字幕和背景音乐，仅带有音效；\n画面比例为 16:9 横屏；\n参考 <图1> 中的女人作为主体，保持五官、脸型、暖棕色长发与整体气质一致；\n（1-2s，半身近景）变装前：主体处在普通室内环境，背景是简单米白墙面与日常室内光线，穿基础灰色上衣与普通日常下装；前状态面部表现为低修饰度、妆面存在感弱、立体光影弱、神态更接近日常未修饰状态，整体普通、克制、生活化；\n镜头快速轻推近，在主体抬手准备转身的瞬间，衣角被动作带起，同时，\n（2-8s，无缝过渡转场变装，慢动作特写，特效）\n主体在抬手转身的动作轨迹中瞬间完成变装，变装后的第一个有效镜头先以面部为中心：后状态脸部更干净，眼部轮廓更清楚，暖棕长发边缘被冷白光勾出清晰发丝线条，肩颈线条被抬亮；\n随即镜头从面部近景自然展开到上半身，已完全换上轻熟街头时装：黑色短款修身上衣，外搭利落短夹克，下身是宽松做旧牛仔裤，脚穿厚底运动鞋；服装轮廓清楚，夹克边缘、牛仔褶皱与金属扣件出现短暂反光；\n转场为：推镜变焦 + 旋转擦拭，触发信号为外套边缘掠过镜头形成遮挡；\n背景无缝切换为开阔的室外旧街区结构空间：建筑立面切角、水泥地、木板边缘、远处旧墙面与街区透视完整出现，明显区别于原图的单一室内墙面；冷调漫射光打在发丝、夹克轮廓和牛仔褶皱上，地面灰尘被动作轻轻带起；\n（8-15s，中景）收尾：主体站定后轻微换重心，一只手自然落在裤袋附近，镜头从面部附近缓慢拉开到中景，保持后造型稳定展示；\n脸部状态、发型轮廓、肩颈线条、腰胯比例、牛仔裤垂坠和鞋底厚度全部可见；结尾重点强化色调与质感：低饱和冷蓝灰色阶、轻微曝光漂移、胶片颗粒与数码噪点并存，暗部压低但保留结构，发丝边缘与鼻梁、锁骨位置出现冷白高光反射，整体呈现韩系 MV 预告片式的高级定帧感。';
+      let fullPromptText = '';
+      if (selectedImageId === 'image2') {
+        fullPromptText = '以<图片>中的<浅棕色波浪长发、身穿青底金色花纹挂脖连衣裙、手持带白色毛球黑色包包的年轻女性>为<主体>。场景完全沿用原图的日本浅草寺雷门环境，背景包含巨大的红底黑字纸灯笼与朱红色大柱，保持白天自然柔和的真实光感。在 0 到 2 秒，画面以全景建立空间纵深，镜头沿中轴线向<主体>胸口以不超过5度的微仰角缓慢推入，推入速度先慢后快；在 2 到 5 秒，镜头迅速带有径向模糊地向后拉回至中景，拉回速度逐渐减慢至平稳，随后再次向<主体>平滑推入；在 5 到 8 秒，镜头第二次迅速带有径向模糊向后拉回，速度递减至停稳后，第三次向<主体>推入，构图逐渐收紧至上半身；在 8 到 15 秒，镜头平稳过渡到<主体>的近景并定格，<主体>保持自然呼吸与轻微的重心调整，清晰展现五官轮廓、发丝细节与衣物材质，画面在柔和光影中缓慢收束。整个过程<主体>特征与穿搭保持高度一致，各段运镜衔接平滑自然。';
+      } else {
+        fullPromptText = selectedStyle === 'A' 
+          ? '一个剪辑成转场运镜变装的视频，不要生成字幕和背景音乐，仅带有音效；\n画面比例为 16:9 横屏；\n参考 <人物图1> 中的人物作为主体（保持五官与脸部一致性、发型一致性、气质一致性）；\n（1-3s，中近景）变装前：\n前造型：浅灰细肩带基础内搭，外搭米白薄款针织开衫，下装为深色直筒长裤，整体日常克制；\n动作：人物轻轻整理开衫领口，抬眼看向镜头，微微侧头；\n场景与氛围光感：与原图同类的日常室内空间，干净墙面，柔和自然光但对比度偏低，真实可拍摄；\n前状态面部表现：低修饰度、妆面存在感减弱、立体光影减弱、气色收敛、肤质更日常；\n子风格关键词：甜野少女、清透轻甜、真实生活感的精致整理、柔光快照质感；\n（3-12s，无缝过渡转场变装，慢动作特写，强化节奏变化）：\n转场机制：推镜变焦 + 旋转擦拭；\n触发信号：镜头快速推近到面部，发丝贴近镜头形成第一次遮挡，开衫衣角掠过镜头形成第二次遮挡，窗边出现一次冷白闪光作为节拍点；\n节奏变化：推镜明显加速，遮挡切换干脆，闪光瞬间完成形变；\n变装后的第一个有效镜头先以面部为中心：近景先建立后状态面部完成度（肤质更干净、五官光影更清晰、眼神更甜但更有主导感），发型轮廓更顺滑并带柔和高光边缘；随后镜头带出肩颈线条更清楚、身形比例更利落；\n后造型：短款合身针织上衣，百褶短裙，小珍珠项链，小体量硬挺包袋，发侧蝴蝶结发饰形成小面积高光点，轮廓清晰不松垮；\n背景无缝切换为后场景：复古公寓窗边梳妆台区域，旧木桌面与镜框、少量旧相框与桌面小摆件，空间类型与原图背景明显不同；\n光线氛围：窗边柔光与冷白边缘高光并存，低饱和冷蓝灰作为底色，亮部干净、暗部有结构；\n（13-15s，中景到近景）收尾：\n后造型稳定展示：人物轻轻抬手拨发，停住对镜微笑，镜头保持人物面部为主要视觉焦点；\n镜头：轻微跟进后定住，形成 MV 预告片快照式定帧；\n收尾色调与质感：低饱和冷蓝灰色阶，轻微曝光漂移，胶片颗粒与细密数码噪点叠加，高光边缘冷白干净，反差克制但质感高级。'
+          : '一个剪辑成转场运镜变装的视频，不要生成字幕和背景音乐，仅带有音效；\n画面比例为 16:9 横屏；\n参考 <图1> 中的女人作为主体，保持五官、脸型、暖棕色长发与整体气质一致；\n（1-2s，半身近景）变装前：主体处在普通室内环境，背景是简单米白墙面与日常室内光线，穿基础灰色上衣与普通日常下装；前状态面部表现为低修饰度、妆面存在感弱、立体光影弱、神态更接近日常未修饰状态，整体普通、克制、生活化；\n镜头快速轻推近，在主体抬手准备转身的瞬间，衣角被动作带起，同时，\n（2-8s，无缝过渡转场变装，慢动作特写，特效）\n主体在抬手转身的动作轨迹中瞬间完成变装，变装后的第一个有效镜头先以面部为中心：后状态脸部更干净，眼部轮廓更清楚，暖棕长发边缘被冷白光勾出清晰发丝线条，肩颈线条被抬亮；\n随即镜头从面部近景自然展开到上半身，已完全换上轻熟街头时装：黑色短款修身上衣，外搭利落短夹克，下身是宽松做旧牛仔裤，脚穿厚底运动鞋；服装轮廓清楚，夹克边缘、牛仔褶皱与金属扣件出现短暂反光；\n转场为：推镜变焦 + 旋转擦拭，触发信号为外套边缘掠过镜头形成遮挡；\n背景无缝切换为开阔的室外旧街区结构空间：建筑立面切角、水泥地、木板边缘、远处旧墙面与街区透视完整出现，明显区别于原图的单一室内墙面；冷调漫射光打在发丝、夹克轮廓和牛仔褶皱上，地面灰尘被动作轻轻带起；\n（8-15s，中景）收尾：主体站定后轻微换重心，一只手自然落在裤袋附近，镜头从面部附近缓慢拉开到中景，保持后造型稳定展示；\n脸部状态、发型轮廓、肩颈线条、腰胯比例、牛仔裤垂坠和鞋底厚度全部可见；结尾重点强化色调与质感：低饱和冷蓝灰色阶、轻微曝光漂移、胶片颗粒与数码噪点并存，暗部压低但保留结构，发丝边缘与鼻梁、锁骨位置出现冷白高光反射，整体呈现韩系 MV 预告片式的高级定帧感。';
+      }
 
       let currentIndex = 0;
       const typingInterval = setInterval(() => {
@@ -231,15 +241,16 @@ export default function Home() {
     }
   };
 
-  const handleImageSelect = (e: React.MouseEvent) => {
+  const handleImageSelect = (e: React.MouseEvent, imageId: 'image1' | 'image2' = 'image1') => {
     e.stopPropagation();
     setIsDrawerOpen(false);
     setIsImageSelected(true);
+    setSelectedImageId(imageId);
     
-    // Simulate user typing "我要变装" after selecting image
+    // Simulate user typing text after selecting image
     setIsTyping(true);
     let text = '';
-    const targetText = '我要变装';
+    const targetText = imageId === 'image2' ? '我要生成推拉运镜' : '我要变装';
     let i = 0;
     
     const typeInterval = setInterval(() => {
@@ -255,11 +266,17 @@ export default function Home() {
 
   const handleSendClick = (e: React.MouseEvent) => {
     e.stopPropagation();
-    if (isImageSelected && inputText === '我要变装') {
+    if (isImageSelected && (inputText === '我要变装' || inputText === '我要生成推拉运镜')) {
       // Send the message
       setInputText('');
       setIsImageSelected(false);
-      setStep(1); // Proceed to show user message bubble
+      
+      // For image2, skip Step 2 (options) and jump straight to Step 3 (System notification)
+      if (selectedImageId === 'image2') {
+        setStep(3);
+      } else {
+        setStep(1); // Proceed to show user message bubble for image1
+      }
     }
   };
 
@@ -319,16 +336,16 @@ export default function Home() {
         >
           
           {/* User Message 1 */}
-          <div className={`flex w-full justify-end transition-all duration-500 ease-out transform ${step >= 1 ? 'opacity-100 translate-y-0 h-auto' : 'opacity-0 translate-y-4 pointer-events-none h-0 overflow-hidden'}`}>
+          <div className={`flex w-full justify-end transition-all duration-500 ease-out transform ${step >= 1 || selectedImageId === 'image2' ? 'opacity-100 translate-y-0 h-auto' : 'opacity-0 translate-y-4 pointer-events-none h-0 overflow-hidden'}`}>
             <div className="bg-white rounded-[24px] rounded-tr-[8px] p-2 shadow-[0_2px_12px_rgba(0,0,0,0.04)] max-w-[75%] flex flex-col items-end">
               <div className="px-3 pt-2 pb-2">
                 <p className="text-[16px] text-[#111111] leading-[1.5] tracking-[0.02em]">
-                  我要变装
+                  {selectedImageId === 'image2' ? '我要生成推拉运镜' : '我要变装'}
                 </p>
               </div>
               <div className="w-full rounded-[18px] overflow-hidden border border-gray-100 mt-1">
                 <img 
-                  src="/vv3.jpg" 
+                  src={selectedImageId === 'image2' ? '/aoxue17.jpeg' : '/vv3.jpg'}
                   alt="User uploaded selfie" 
                   className="w-full h-auto object-cover" 
                 />
@@ -439,7 +456,7 @@ export default function Home() {
                 className="w-[20px] h-[20px] object-contain [image-rendering:-webkit-optimize-contrast] [image-rendering:crisp-edges] -ml-[8px]"
               />
               <span className="text-[15px] text-[#8E8E93] font-normal tracking-[0.02em] leading-none -ml-[9px]">
-                调用技能：kpop-mv-outfit-transition
+                {selectedImageId === 'image2' ? '调用技能推拉运镜' : '调用技能：kpop-mv-outfit-transition'}
               </span>
             </div>
             
@@ -511,7 +528,7 @@ export default function Home() {
           <div className={`flex w-full transition-all duration-500 ease-out transform delay-150 ${step >= 6 ? 'opacity-100 translate-y-0 h-auto' : 'opacity-0 translate-y-4 pointer-events-none h-0 overflow-hidden'}`}>
             <div className="bg-white rounded-[24px] rounded-tl-[8px] px-5 py-4 shadow-[0_2px_12px_rgba(0,0,0,0.02)] max-w-[85%] border border-gray-100/50">
               <p className="text-[16px] text-[#111111] leading-[1.5] tracking-[0.02em]">
-                {step >= 6 ? <FadeInText text="我将会用提示词帮你生成一条变装视频。" delay={0.3} boldIndices={[4, 5, 6]} /> : '我将会用提示词帮你生成一条变装视频。'}
+                {step >= 6 ? <FadeInText text={selectedImageId === 'image2' ? "我将会用提示词帮你生成一条推拉运镜" : "我将会用提示词帮你生成一条变装视频。"} delay={0.3} boldIndices={selectedImageId === 'image2' ? [4, 5, 6, 7] : [4, 5, 6]} /> : (selectedImageId === 'image2' ? '我将会用提示词帮你生成一条推拉运镜' : '我将会用提示词帮你生成一条变装视频。')}
               </p>
             </div>
           </div>
@@ -521,7 +538,7 @@ export default function Home() {
             <div className="bg-white rounded-[24px] rounded-tl-[8px] p-2 shadow-[0_2px_12px_rgba(0,0,0,0.04)] max-w-[85%] border border-gray-100/50">
               <div className="w-full rounded-[18px] overflow-hidden bg-black/5 relative aspect-video">
                 <video 
-                  src={selectedStyle === 'A' ? "/outfit-transition-a.mp4" : "/outfit-transition.mp4"}
+                  src={selectedImageId === 'image2' ? "/camera-move.mp4" : (selectedStyle === 'A' ? "/outfit-transition-a.mp4" : "/outfit-transition.mp4")}
                   className="w-full h-full object-cover"
                   controls
                   playsInline
@@ -549,13 +566,14 @@ export default function Home() {
           <div className={`px-4 pt-2 pb-1 transition-all duration-300 ${isImageSelected ? 'opacity-100 h-[80px]' : 'opacity-0 h-0 overflow-hidden'}`}>
              <div className="h-full w-[60px] relative rounded-[12px] overflow-hidden border border-gray-200/50 shadow-sm bg-white p-1">
                <div className="w-full h-full rounded-[8px] overflow-hidden">
-                 <img src="/vv3.jpg" alt="Selected" className="w-full h-full object-cover" />
+                 <img src={selectedImageId === 'image2' ? '/aoxue17.jpeg' : '/vv3.jpg'} alt="Selected" className="w-full h-full object-cover" />
                </div>
                <button 
                  className="absolute -top-1 -right-1 bg-gray-200/80 text-gray-600 rounded-full p-0.5 active:bg-gray-300"
                  onClick={(e) => {
                    e.stopPropagation();
                    setIsImageSelected(false);
+                   setSelectedImageId(null);
                    setInputText('');
                  }}
                >
@@ -626,10 +644,10 @@ export default function Home() {
 
               {/* The new target image (Added) */}
               <div 
-                onClick={handleImageSelect}
+                onClick={(e) => handleImageSelect(e, 'image2')}
                 className="aspect-square rounded-[16px] overflow-hidden cursor-pointer relative group border border-gray-100 shadow-sm"
               >
-                <img src="/vv3.jpg" alt="Gallery item 2" className="w-full h-full object-cover transition-transform group-active:scale-105" />
+                <img src="/aoxue17.jpeg" alt="Gallery item 2" className="w-full h-full object-cover transition-transform group-active:scale-105" />
                 <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors" />
                 <div className="absolute bottom-1 right-1 bg-black/40 backdrop-blur-sm rounded-full p-1 opacity-0 group-hover:opacity-100 transition-opacity">
                   <ImageIcon size={12} color="white" />
