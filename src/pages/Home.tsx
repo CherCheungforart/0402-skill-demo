@@ -577,7 +577,7 @@ export default function Home() {
               <div className="flex items-center space-x-2.5 ml-2">
                 {!inputText && !isImageSelected && (
                   <button className="w-[36px] h-[36px] flex items-center justify-center active:scale-95 transition-transform shrink-0">
-                    <img src="/voice-icon.png" alt="Voice" className="w-[32px] h-[32px] object-contain ml-[3px]" />
+                    <img src="/voice-icon.png" alt="Voice" className="w-[32px] h-[32px] object-contain" />
                   </button>
                 )}
                 
@@ -597,7 +597,7 @@ export default function Home() {
                     onClick={handlePlusClick}
                     className={`w-[36px] h-[36px] flex items-center justify-center transition-transform shrink-0 active:scale-95 ${isDrawerOpen ? 'rotate-45' : ''}`}
                   >
-                    <img src="/plus-icon.png" alt="Plus" className="w-[32px] h-[32px] object-contain" />
+                    <img src="/plus-icon.png" alt="Plus" className="w-[32px] h-[32px] object-contain mr-[3px]" />
                   </button>
                 )}
               </div>
