@@ -304,9 +304,9 @@ export default function Home() {
             <img src="/left-button.png" alt="Back" className="w-6 h-6 object-contain" />
           </button>
           <div className="flex flex-col items-center justify-center absolute left-1/2 transform -translate-x-1/2 pointer-events-none">
-            <img src="/main-title.png" alt="AI 创作" className="h-[22px] object-contain mb-0.5" />
-            <img src="/sub-title.png" alt="Seedance 2.0" className="h-[12px] object-contain" />
-          </div>
+              <img src="/main-title.png" alt="AI 创作" className="h-[18px] object-contain mb-1" />
+              <img src="/sub-title.png" alt="Seedance 2.0" className="h-[10px] object-contain" />
+            </div>
           <button className="p-2 -mr-2 active:opacity-70 transition-opacity">
             <img src="/right-button.png" alt="Menu" className="w-6 h-6 object-contain" />
           </button>
