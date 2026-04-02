@@ -582,15 +582,14 @@ export default function Home() {
                 )}
                 
                 {inputText || isImageSelected ? (
-                  <button 
-                    onClick={handleSendClick}
-                    className={`w-[36px] h-[36px] rounded-full flex items-center justify-center transition-all shrink-0 ${
+                  <button className={`w-[36px] h-[36px] flex items-center justify-center transition-all shrink-0 active:scale-95 ${
                       inputText === '我要变装' && isImageSelected && !isTyping
-                        ? 'bg-[#FF2A5F] text-white active:scale-95 shadow-md shadow-[#FF2A5F]/20' 
-                        : 'bg-gray-200 text-gray-400 cursor-not-allowed'
+                        ? '' 
+                        : 'opacity-50 cursor-not-allowed'
                     }`}
+                    onClick={handleSendClick}
                   >
-                    <Send size={16} strokeWidth={2} className="ml-0.5" />
+                    <img src="/send-icon.png" alt="Send" className="w-[36px] h-[36px] object-contain" />
                   </button>
                 ) : (
                   <button 
