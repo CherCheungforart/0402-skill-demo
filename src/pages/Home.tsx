@@ -315,7 +315,7 @@ export default function Home() {
         {/* Chat Content Area */}
         <div 
           ref={chatContainerRef}
-          className="flex-1 overflow-y-auto px-4 pb-[110px] pt-4 space-y-5 scrollbar-hide scroll-smooth"
+          className={`flex-1 overflow-y-auto px-4 pb-[110px] pt-4 space-y-5 scrollbar-hide scroll-smooth transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] ${isDrawerOpen ? '-translate-y-[215px]' : 'translate-y-0'}`}
         >
           
           {/* User Message 1 */}
@@ -543,7 +543,7 @@ export default function Home() {
         </div>
 
         {/* Bottom Input Area */}
-        <div className="absolute bottom-0 w-full bg-[#F6F7F9] z-20 transition-all duration-300" style={{ transform: isDrawerOpen ? 'translateY(-240px)' : 'translateY(0)' }}>
+        <div className="absolute bottom-0 w-full bg-[#F6F7F9] z-20 transition-all duration-300" style={{ transform: isDrawerOpen ? 'translateY(-215px)' : 'translateY(0)' }}>
           
           {/* Selected Image Preview above input */}
           <div className={`px-4 pt-2 pb-1 transition-all duration-300 ${isImageSelected ? 'opacity-100 h-[80px]' : 'opacity-0 h-0 overflow-hidden'}`}>
