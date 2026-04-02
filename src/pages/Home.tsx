@@ -337,7 +337,7 @@ export default function Home() {
         {/* Chat Content Area */}
         <div 
           ref={chatContainerRef}
-          className={`flex-1 overflow-y-auto px-4 pb-[110px] pt-4 space-y-5 scrollbar-hide scroll-smooth transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] ${isDrawerOpen ? '-translate-y-[155px]' : 'translate-y-0'}`}
+          className={`flex-1 overflow-y-auto px-4 pb-[110px] pt-4 space-y-5 scrollbar-hide scroll-smooth transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] z-10 relative ${isDrawerOpen ? '-translate-y-[155px]' : 'translate-y-0'}`}
         >
           
           {/* User Message 1 */}
@@ -559,10 +559,10 @@ export default function Home() {
           </div>
 
           {/* Hint Overlay (Only visible at step 0 before any interaction) */}
-          <div className={`absolute left-0 right-0 bottom-[100px] flex items-center justify-center pointer-events-none transition-opacity duration-700 z-50 ${step === 0 && !isDrawerOpen && !isImageSelected ? 'opacity-100' : 'opacity-0'}`}>
-            <div className="flex items-center justify-center bg-black/30 text-white/95 px-6 py-2.5 rounded-full text-[15px] font-medium tracking-wider backdrop-blur-md animate-pulse shadow-md h-[40px]">
+          <div className={`absolute left-0 right-0 bottom-[100px] flex items-center justify-center pointer-events-none transition-opacity duration-700 z-[100] ${step === 0 && !isDrawerOpen && !isImageSelected ? 'opacity-100' : 'opacity-0'}`}>
+            <div className="flex items-center justify-center bg-black/30 text-white/95 px-6 py-2.5 rounded-full text-[15px] font-medium tracking-wider backdrop-blur-md animate-pulse shadow-md">
               <span>点击下方</span>
-              <span className="font-bold text-[18px] leading-none mx-1 flex items-center h-full pb-[2px]">+</span>
+              <span className="font-bold text-[18px] leading-none mx-1 relative" style={{ top: '-1px' }}>+</span>
               <span>号开始</span>
             </div>
           </div>
@@ -570,7 +570,7 @@ export default function Home() {
         </div>
 
         {/* Bottom Input Area */}
-        <div className="absolute bottom-0 w-full bg-[#F6F7F9] z-20 transition-all duration-300" style={{ transform: isDrawerOpen ? 'translateY(-155px)' : 'translateY(0)' }}>
+        <div className={`absolute bottom-0 w-full bg-[#F6F7F9] z-20 transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] ${isDrawerOpen ? '-translate-y-[155px]' : 'translate-y-0'}`}>
           
           {/* Selected Image Preview above input */}
           <div className={`px-4 pt-2 pb-1 transition-all duration-300 ${isImageSelected ? 'opacity-100 h-[80px]' : 'opacity-0 h-0 overflow-hidden'}`}>
