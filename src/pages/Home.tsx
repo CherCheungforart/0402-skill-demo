@@ -339,9 +339,9 @@ export default function Home() {
           <div className={`flex flex-col px-0 pt-3 pb-1 transition-all duration-500 ease-out transform delay-150 ${step >= 3 ? 'opacity-100 translate-y-0 h-auto' : 'opacity-0 translate-y-4 pointer-events-none h-0 overflow-hidden'}`}>
             <div className="flex items-center space-x-[6px] pl-0">
               <img 
-                src="/flower-icon.png" 
+                src="/skill-icon.png" 
                 alt="System Icon" 
-                className="w-[24px] h-[24px] object-contain mix-blend-multiply contrast-[1.5] text-black bg-[#f6f7f9] -ml-1"
+                className="w-[20px] h-[20px] object-contain"
               />
               <span className="text-[13px] text-[#8E8E93] font-medium tracking-[0.02em] leading-none mb-[1px]">调用技能：kpop-mv-outfit-transition</span>
             </div>
