@@ -315,7 +315,7 @@ export default function Home() {
         {/* Chat Content Area */}
         <div 
           ref={chatContainerRef}
-          className={`flex-1 overflow-y-auto px-4 pb-[110px] pt-4 space-y-5 scrollbar-hide scroll-smooth transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] ${isDrawerOpen ? '-translate-y-[155px]' : 'translate-y-0'}`}
+          className={`flex-1 overflow-y-auto px-4 pb-[110px] pt-4 space-y-5 scroll-smooth transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] ${isDrawerOpen ? '-translate-y-[155px]' : 'translate-y-0'}`}
         >
           
           {/* User Message 1 */}
