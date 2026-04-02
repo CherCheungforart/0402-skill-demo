@@ -453,7 +453,7 @@ export default function Home() {
                   }}
                   className="flex items-center space-x-1 text-[15px] text-[#8E8E93] font-normal active:opacity-70 transition-opacity tracking-[0.02em] leading-none"
                 >
-                  <span className="-ml-[8px]">{isDetailsExpanded ? '收起完整方案结构' : '展开完整方案结构'}</span>
+                  <span className="-ml-[7px]">{isDetailsExpanded ? '收起完整方案结构' : '展开完整方案结构'}</span>
                   {isDetailsExpanded ? <ChevronUp size={15} className="text-[#8E8E93]" strokeWidth={1.5} /> : <ChevronDown size={15} className="text-[#8E8E93]" strokeWidth={1.5} />}
                 </button>
               </div>
