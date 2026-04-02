@@ -423,8 +423,8 @@ export default function Home() {
                     { id: 'C', text: '仅沿用场景' },
                     { id: 'D', text: '其他' },
                   ] : [
-                    { id: 'A', text: '甜美风格的变装' },
-                    { id: 'B', text: '潮流风格的变装' },
+                    { id: 'A', text: '甜美风格的变装（推荐）' },
+                    { id: 'B', text: '潮流风格的变装（推荐）' },
                     { id: 'C', text: '复古风格的变装' },
                     { id: 'D', text: 'Y2K风格的变装' },
                   ]).map((option) => {
