@@ -343,18 +343,21 @@ export default function Home() {
                 alt="System Icon" 
                 className="w-[20px] h-[20px] object-contain [image-rendering:-webkit-optimize-contrast] [image-rendering:crisp-edges]"
               />
-              <span className="text-[14px] text-[#8E8E93] font-normal tracking-[0.02em] leading-none">调用技能：kpop-mv-outfit-transition</span>
+              <span className="text-[15px] text-[#8E8E93] font-normal tracking-[0.02em] leading-none">调用技能：kpop-mv-outfit-transition</span>
             </div>
             
             {/* 2. Expand/Collapse Toggle (Now under System Notification) */}
             {longTextSection >= 1 && (
               <div className="opacity-0 animate-[fadeIn_0.5s_ease-out_forwards] pl-[38px] pr-7 pt-1.5">
                 <button 
-                  onClick={() => setIsDetailsExpanded(!isDetailsExpanded)}
-                  className="flex items-center space-x-1 text-[14px] text-[#8E8E93] font-normal active:opacity-70 transition-opacity tracking-[0.02em] leading-none"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setIsDetailsExpanded(!isDetailsExpanded);
+                  }}
+                  className="flex items-center space-x-1 text-[15px] text-[#8E8E93] font-normal active:opacity-70 transition-opacity tracking-[0.02em] leading-none"
                 >
                   <span>{isDetailsExpanded ? '收起完整方案结构' : '展开完整方案结构'}</span>
-                  {isDetailsExpanded ? <ChevronUp size={14} className="text-[#8E8E93]" strokeWidth={1.5} /> : <ChevronDown size={14} className="text-[#8E8E93]" strokeWidth={1.5} />}
+                  {isDetailsExpanded ? <ChevronUp size={15} className="text-[#8E8E93]" strokeWidth={1.5} /> : <ChevronDown size={15} className="text-[#8E8E93]" strokeWidth={1.5} />}
                 </button>
               </div>
             )}
