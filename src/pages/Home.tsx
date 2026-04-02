@@ -590,8 +590,10 @@ export default function Home() {
 
           {/* Hint Overlay (Only visible at step 0 before any interaction) */}
           <div className={`absolute inset-0 flex items-center justify-center pointer-events-none transition-opacity duration-700 z-50 ${step === 0 && !isDrawerOpen && !isImageSelected ? 'opacity-100' : 'opacity-0'}`}>
-            <div className="bg-black/30 text-white/95 px-6 py-2.5 rounded-full text-[15px] font-medium tracking-wider backdrop-blur-md animate-pulse shadow-md">
-              点击下方 <span className="font-bold text-[18px] align-middle">+</span> 号开始
+            <div className="flex items-center justify-center bg-black/30 text-white/95 px-6 py-2.5 rounded-full text-[15px] font-medium tracking-wider backdrop-blur-md animate-pulse shadow-md">
+              <span>点击下方</span>
+              <span className="font-bold text-[18px] leading-none mx-1 relative" style={{ top: '-1px' }}>+</span>
+              <span>号开始</span>
             </div>
           </div>
 
