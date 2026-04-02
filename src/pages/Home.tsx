@@ -528,7 +528,7 @@ export default function Home() {
           <div className={`flex w-full transition-all duration-500 ease-out transform delay-150 ${step >= 6 ? 'opacity-100 translate-y-0 h-auto' : 'opacity-0 translate-y-4 pointer-events-none h-0 overflow-hidden'}`}>
             <div className="bg-white rounded-[24px] rounded-tl-[8px] px-5 py-4 shadow-[0_2px_12px_rgba(0,0,0,0.02)] max-w-[85%] border border-gray-100/50">
               <p className="text-[16px] text-[#111111] leading-[1.5] tracking-[0.02em]">
-                {step >= 6 ? <FadeInText text={selectedImageId === 'image2' ? "我将会用提示词帮你生成一条推拉运镜" : "我将会用提示词帮你生成一条变装视频。"} delay={0.3} boldIndices={selectedImageId === 'image2' ? [4, 5, 6, 7] : [4, 5, 6]} /> : (selectedImageId === 'image2' ? '我将会用提示词帮你生成一条推拉运镜' : '我将会用提示词帮你生成一条变装视频。')}
+                {step >= 6 ? <FadeInText text={selectedImageId === 'image2' ? "我将会用提示词帮你生成一条推拉运镜" : "我将会用提示词帮你生成一条变装视频。"} delay={0.3} boldIndices={[4, 5, 6]} /> : (selectedImageId === 'image2' ? '我将会用提示词帮你生成一条推拉运镜' : '我将会用提示词帮你生成一条变装视频。')}
               </p>
             </div>
           </div>
