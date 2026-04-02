@@ -431,7 +431,7 @@ export default function Home() {
           </div>
 
           {/* System Notification (Step 3) */}
-          <div className={`flex flex-col px-0 pt-[16px] pb-1 transition-all duration-500 ease-out transform delay-150 ${step >= 3 ? 'opacity-100 translate-y-0 h-auto' : 'opacity-0 translate-y-4 pointer-events-none h-0 overflow-hidden'}`}>
+          <div className={`flex flex-col px-0 transition-all duration-500 ease-out transform delay-150 ${step >= 3 ? 'opacity-100 translate-y-0 h-auto' : 'opacity-0 translate-y-4 pointer-events-none h-0 overflow-hidden'}`}>
             <div className="flex items-center space-x-[6px] pl-3">
               <img 
                 src="/skill-icon-2.png" 
@@ -488,7 +488,7 @@ export default function Home() {
           <div className={`flex flex-col w-full transition-all duration-500 ease-out transform ${step >= 5 ? 'opacity-100 translate-y-0 h-auto' : 'opacity-0 translate-y-4 pointer-events-none h-0 overflow-hidden'}`}>
             
             {/* Main Prompt Bubble */}
-            <div className="bg-white rounded-[24px] rounded-tl-[8px] px-6 py-6 shadow-[0_2px_12px_rgba(0,0,0,0.02)] max-w-[92%] border border-gray-100/50 mb-2">
+            <div className="bg-white rounded-[24px] rounded-tl-[8px] px-6 py-6 shadow-[0_2px_12px_rgba(0,0,0,0.02)] max-w-[92%] border border-gray-100/50">
               <div className="space-y-6 text-[15px] text-[#333333] leading-[1.65] tracking-[0.01em] relative">
                 {/* 1. Show the Prompt Package prominently first */}
                 <div className="opacity-0 animate-[fadeIn_0.5s_ease-out_forwards]">
