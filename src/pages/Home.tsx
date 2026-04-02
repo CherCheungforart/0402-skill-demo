@@ -300,11 +300,11 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 flex items-center justify-center py-8 font-sans">
-      {/* iOS Container: 393x852 */}
+    <div className="min-h-screen bg-gray-100 flex items-center justify-center font-sans">
+      {/* Container matching iPhone 16 Pro dimensions (393x852) */}
       <div 
-        className="relative bg-[#F6F7F9] overflow-hidden shadow-2xl rounded-[40px] border-[8px] border-black flex flex-col cursor-pointer select-none"
-        style={{ width: '393px', height: '852px' }}
+        className="relative bg-[#F6F7F9] overflow-hidden flex flex-col cursor-pointer select-none"
+        style={{ width: '100vw', height: '100vh', maxWidth: '430px', maxHeight: '932px' }}
         onClick={handleScreenClick}
       >
         {/* Status Bar */}
