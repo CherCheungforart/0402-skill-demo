@@ -614,33 +614,28 @@ export default function Home() {
           </div>
         </div>
         
-        {/* Custom Bottom Drawer for Image Selection */}
+        {/* Attachment Drawer */}
         <div 
-          className={`absolute bottom-0 left-0 w-full h-[320px] bg-white z-10 transition-transform duration-300 ease-out border-t border-gray-100 px-5 pt-5 pb-8 shadow-[0_-4px_24px_rgba(0,0,0,0.04)] ${isDrawerOpen ? 'translate-y-0' : 'translate-y-full'}`}
+          className="absolute bottom-0 left-0 w-full h-[240px] bg-white z-10 transition-transform duration-300 ease-out border-t border-gray-100 px-3 pt-6 pb-8"
+          style={{ transform: isDrawerOpen ? 'translateY(0)' : 'translateY(100%)' }}
         >
-          <div className="flex items-center justify-between mb-4">
-            <h3 className="text-[15px] font-semibold text-[#111111] tracking-wide">最近项目</h3>
-            <button 
-              onClick={() => setIsDrawerOpen(false)}
-              className="p-1.5 rounded-full bg-gray-100/80 text-gray-500 active:bg-gray-200 transition-colors"
-            >
-              <X size={16} strokeWidth={2.5} />
-            </button>
-          </div>
-          
-          <div className="grid grid-cols-3 gap-2.5">
+          <h3 className="text-[14px] font-medium text-gray-500 mb-4 ml-1">选择照片或视频</h3>
+          <div className="grid grid-cols-4 gap-1.5">
+            {/* The target image */}
             <div 
               onClick={handleImageSelect}
-              className="aspect-square rounded-[12px] overflow-hidden cursor-pointer relative group shadow-sm active:scale-[0.98] transition-transform"
+              className="aspect-square overflow-hidden cursor-pointer relative group border border-gray-100 shadow-sm"
             >
-              <img src="/vv3.jpg" alt="Gallery item" className="w-full h-full object-cover" />
+              <img src="/vv3.jpg" alt="Gallery item" className="w-full h-full object-cover transition-transform group-active:scale-105" />
               <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors" />
+              <div className="absolute bottom-1 right-1 bg-black/40 backdrop-blur-sm rounded-full p-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                <ImageIcon size={12} color="white" />
+              </div>
             </div>
             
-            {[...Array(5)].map((_, i) => (
-              <div key={i} className="aspect-square rounded-[12px] bg-[#F6F7F9] overflow-hidden border border-gray-100 flex items-center justify-center">
-                <ImageIcon size={20} className="text-gray-300 opacity-50" />
-              </div>
+            {/* Dummy gallery items */}
+            {[1, 2, 3].map(i => (
+              <div key={i} className="aspect-square bg-gray-100 overflow-hidden border border-gray-50" />
             ))}
           </div>
         </div>
