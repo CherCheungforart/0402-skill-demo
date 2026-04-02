@@ -15,54 +15,35 @@ const FadeInText = ({ text, delay = 0, speed = 0.025, boldIndices = [] }: { text
   </>
 );
 
-const detailsTextA = `1）目标复述
-• 你要：15s MV 变装转场，风格更甜美；主体用你上传的人物图做一致性锚点；默认 16:9 横屏。
-• 节奏：1-3s 建立前状态，3-8s 完成主变装，变装后第一个有效镜头先给脸，再展开后造型与背景；后背景空间类型与原图明显不同。
+const detailsTextA = `**1. 目标复述** 
 
-2）三点校准（默认直接定）
-• 主体画像：甜美清透、轻熟但克制
-• 子风格：A 甜野少女
-• 触发信号：发丝近景遮挡 + 开衫衣角掠镜遮挡 + 窗边冷白闪光一次
+- **主体锚定语**：以 <图片> 中的 <浅棕色波浪长发、身穿青金花纹挂脖连衣裙的女性> 为 <主体>。 
+- **场景与色调沿用策略**：完全沿用原图的浅草寺雷门背景（包含巨大的红底黑字纸灯笼与两侧朱红色大柱）以及白天自然柔和的真实光感。 
+- **运镜序列与衔接特性**：总时长 15 秒，包含 2 秒的建立阶段、2 次各 3 秒的“径向模糊拉回再推入”循环运镜，最后进入长达 7 秒的近景终章平稳展示。各段自然衔接，突出纵深冲击感。 
 
-3）方案概述
-用“低完成度日常前状态”做反差，后状态走甜野少女的轻甜高级感；后场景从原图日常墙面切换到“复古公寓窗边梳妆台”类型空间，形成强差异；收尾用冷蓝灰电影质感压住廉价甜。
+**2. 时间轴脚本** 
 
-4）分镜脚本（4 镜）
-• 镜头1（1-3s）：中近景，前状态素净、低完成度，动作轻
-• 镜头2（3-5s）：推镜到脸，发丝遮挡，衣角掠镜
-• 镜头3（5-9s）：旋转擦拭完成变装，后状态开场先给脸（近景）
-• 镜头4（9-15s）：中景稳定展示 + 微跟进定帧，收尾做冷雾颗粒质感
+- **0 到 2 秒（建立阶段）**：全景空间纵深展示，机位对准胸口，沿中轴线微仰角向前缓慢推入，速度先慢后快。 
+- **2 到 5 秒（第一次循环）**：镜头迅速产生径向模糊并向后拉回至中景，速度递减至平稳，随后再次向前推入，展现衣物与环境细节。 
+- **5 到 8 秒（第二次循环）**：再次触发径向模糊并迅速拉回，平稳后第三次向前推入，构图逐渐收紧至人物上半身。 
+- **8 到 15 秒（终章定帧）**：镜头平缓推进至近景并保持平稳定格，重点展现人物面部轮廓、发丝细节与自然光影，画面缓慢收束。 
 
-5）输入增强（可复制复用）
-用我上传的人物图做主体一致性锚点，做 15s K-pop MV 变装转场，16:9 横屏；子风格 A 甜野少女；前 1-3 秒前状态面部低完成度、低光影强调；3-8 秒完成主变装；转场固定推镜变焦 + 旋转擦拭，触发用发丝近景遮挡 + 开衫衣角掠镜遮挡 + 窗边冷白闪光一次；变装后第一个有效镜头先给面部，再展开肩颈线条、身形比例与完整后造型；后背景空间类型与原图明显不同；收尾用低饱和冷蓝灰电影质感、颗粒与轻微曝光漂移。
+**3. 提示词包** 
 
-6）迭代策略（你只要选一项）
-• 甜得更梦幻：我把后场景改成“雾感花房玻璃廊”，其余节奏不变
-• 甜得更高级：我把后造型改成“短外套 + 窄裙更利落”，保留甜野关键词不跑偏`;
+\`\`\`text 
+以<图片>中的<浅棕色波浪长发、身穿青底金色花纹挂脖连衣裙、手持带白色毛球黑色包包的年轻女性>为<主体>。场景完全沿用原图的日本浅草寺雷门环境，背景包含巨大的红底黑字纸灯笼与朱红色大柱，保持白天自然柔和的真实光感。在 0 到 2 秒，画面以全景建立空间纵深，镜头沿中轴线向<主体>胸口以不超过5度的微仰角缓慢推入，推入速度先慢后快；在 2 到 5 秒，镜头迅速带有径向模糊地向后拉回至中景，拉回速度逐渐减慢至平稳，随后再次向<主体>平滑推入；在 5 到 8 秒，镜头第二次迅速带有径向模糊向后拉回，速度递减至停稳后，第三次向<主体>推入，构图逐渐收紧至上半身；在 8 到 15 秒，镜头平稳过渡到<主体>的近景并定格，<主体>保持自然呼吸与轻微的重心调整，清晰展现五官轮廓、发丝细节与衣物材质，画面在柔和光影中缓慢收束。整个过程<主体>特征与穿搭保持高度一致，各段运镜衔接平滑自然。 
+\`\`\` 
 
-const detailsTextB = `1）目标复述
-• 保留这张图的人物五官、暖棕长发和原始气质。
-• 不继承当前豹纹内搭与米白墙室内背景。
-• 做一版更符合你本人的变装：轻熟、利落、带一点小野感，整体高级但不夸张。
+**4. 质量核对** 
 
-2）三点校准
-• 主体画像：暖棕长发、轻熟、随性、带一点攻击性的时髦感。
-• 后造型子风格：默认 B 街头混搭；它最能放大你原图里本来就有的自然时髦度和小性感。
-• 触发信号：默认抬手带起外套边缘遮挡；比单纯甩发更稳，也更有穿搭完成度。
+- [x] 时间轴使用整数秒划分（0-2秒、2-5秒、5-8秒、8-15秒）。 
+- [x] 未使用任何小数点或百分比数值。 
+- [x] 运镜序列严格遵循“推入 → 径向模糊拉回 → 再推入”的结构，且根据 15 秒时长设定为 2 次循环。 
+- [x] 已准确使用 <图片> 与 <主体> 尖括号锚点格式。 
+- [x] 径向模糊效果仅在向后拉回的时间段内出现。 
+- [x] 提示词包全篇使用正向描述，无否定句或限制句。`;
 
-3）方案概述
-• 前状态压成普通室内、低修饰度、低完成度。
-• 后状态切进开阔室外旧街区结构空间，让人物、造型和背景一起完成升级。
-• 节奏上前 2-3 秒触发，8 秒前完成主要变装；变装后的第一个有效镜头先落在人物面部，再展开后造型和背景。
-
-4）分镜脚本
-• 镜头1：半身近景，人物穿基础灰色上衣与普通日常下装，停留在简单室内墙边。面部低修饰度，神态接近日常未整理完成状态。
-• 镜头2：镜头快速推近到肩颈与发丝，主体抬手转身，外套边缘或衣摆掠过镜头形成遮挡。遮挡一出现就触发变装，不拖节奏。
-• 镜头3：变装完成后的第一个有效镜头先给面部：近景落脸，先建立脸部吸引力、发型轮廓和后状态光影。然后顺势展开到后造型：短款修身上衣、利落短夹克、宽松做旧牛仔裤、厚底运动鞋。背景切到有建筑切面、水泥地和旧墙透视的室外街区空间。
-• 镜头4：中景稳定展示，镜头从面部附近轻轻拉开到中景。展示肩颈线条、腰胯比例、牛仔裤垂坠、外套轮廓和整体气场。结尾再做冷调颗粒和定帧质感收束。
-
-5）输入增强
-我要变装。保留原图脸部和暖棕长发特征，不继承原图服装和室内背景；前状态保持低修饰度、低光影强调、普通日常感；后造型走 B 街头混搭，偏轻熟、小野、不过分张扬，穿短款修身上衣、利落短夹克和宽松做旧牛仔裤；用推镜变焦 + 旋转擦拭，通过外套边缘掠镜触发；后背景切到有建筑切面、水泥地和旧墙透视的开阔街区空间；要求变装后的第一个有效镜头先以面部为中心，再展开到后造型与背景。`;
+const detailsTextB = detailsTextA; // unused in this scenario
 
 export default function Home() {
   const [inputText, setInputText] = useState('');
@@ -141,9 +122,7 @@ export default function Home() {
 
     // Step 5 Progressive Revelation Logic: Type Prompt Text
     if (step === 5) {
-      const fullPromptText = selectedStyle === 'A' 
-        ? '一个剪辑成转场运镜变装的视频，不要生成字幕和背景音乐，仅带有音效；\n画面比例为 16:9 横屏；\n参考 <人物图1> 中的人物作为主体（保持五官与脸部一致性、发型一致性、气质一致性）；\n（1-3s，中近景）变装前：\n前造型：浅灰细肩带基础内搭，外搭米白薄款针织开衫，下装为深色直筒长裤，整体日常克制；\n动作：人物轻轻整理开衫领口，抬眼看向镜头，微微侧头；\n场景与氛围光感：与原图同类的日常室内空间，干净墙面，柔和自然光但对比度偏低，真实可拍摄；\n前状态面部表现：低修饰度、妆面存在感减弱、立体光影减弱、气色收敛、肤质更日常；\n子风格关键词：甜野少女、清透轻甜、真实生活感的精致整理、柔光快照质感；\n（3-12s，无缝过渡转场变装，慢动作特写，强化节奏变化）：\n转场机制：推镜变焦 + 旋转擦拭；\n触发信号：镜头快速推近到面部，发丝贴近镜头形成第一次遮挡，开衫衣角掠过镜头形成第二次遮挡，窗边出现一次冷白闪光作为节拍点；\n节奏变化：推镜明显加速，遮挡切换干脆，闪光瞬间完成形变；\n变装后的第一个有效镜头先以面部为中心：近景先建立后状态面部完成度（肤质更干净、五官光影更清晰、眼神更甜但更有主导感），发型轮廓更顺滑并带柔和高光边缘；随后镜头带出肩颈线条更清楚、身形比例更利落；\n后造型：短款合身针织上衣，百褶短裙，小珍珠项链，小体量硬挺包袋，发侧蝴蝶结发饰形成小面积高光点，轮廓清晰不松垮；\n背景无缝切换为后场景：复古公寓窗边梳妆台区域，旧木桌面与镜框、少量旧相框与桌面小摆件，空间类型与原图背景明显不同；\n光线氛围：窗边柔光与冷白边缘高光并存，低饱和冷蓝灰作为底色，亮部干净、暗部有结构；\n（13-15s，中景到近景）收尾：\n后造型稳定展示：人物轻轻抬手拨发，停住对镜微笑，镜头保持人物面部为主要视觉焦点；\n镜头：轻微跟进后定住，形成 MV 预告片快照式定帧；\n收尾色调与质感：低饱和冷蓝灰色阶，轻微曝光漂移，胶片颗粒与细密数码噪点叠加，高光边缘冷白干净，反差克制但质感高级。'
-        : '一个剪辑成转场运镜变装的视频，不要生成字幕和背景音乐，仅带有音效；\n画面比例为 16:9 横屏；\n参考 <图1> 中的女人作为主体，保持五官、脸型、暖棕色长发与整体气质一致；\n（1-2s，半身近景）变装前：主体处在普通室内环境，背景是简单米白墙面与日常室内光线，穿基础灰色上衣与普通日常下装；前状态面部表现为低修饰度、妆面存在感弱、立体光影弱、神态更接近日常未修饰状态，整体普通、克制、生活化；\n镜头快速轻推近，在主体抬手准备转身的瞬间，衣角被动作带起，同时，\n（2-8s，无缝过渡转场变装，慢动作特写，特效）\n主体在抬手转身的动作轨迹中瞬间完成变装，变装后的第一个有效镜头先以面部为中心：后状态脸部更干净，眼部轮廓更清楚，暖棕长发边缘被冷白光勾出清晰发丝线条，肩颈线条被抬亮；\n随即镜头从面部近景自然展开到上半身，已完全换上轻熟街头时装：黑色短款修身上衣，外搭利落短夹克，下身是宽松做旧牛仔裤，脚穿厚底运动鞋；服装轮廓清楚，夹克边缘、牛仔褶皱与金属扣件出现短暂反光；\n转场为：推镜变焦 + 旋转擦拭，触发信号为外套边缘掠过镜头形成遮挡；\n背景无缝切换为开阔的室外旧街区结构空间：建筑立面切角、水泥地、木板边缘、远处旧墙面与街区透视完整出现，明显区别于原图的单一室内墙面；冷调漫射光打在发丝、夹克轮廓和牛仔褶皱上，地面灰尘被动作轻轻带起；\n（8-15s，中景）收尾：主体站定后轻微换重心，一只手自然落在裤袋附近，镜头从面部附近缓慢拉开到中景，保持后造型稳定展示；\n脸部状态、发型轮廓、肩颈线条、腰胯比例、牛仔裤垂坠和鞋底厚度全部可见；结尾重点强化色调与质感：低饱和冷蓝灰色阶、轻微曝光漂移、胶片颗粒与数码噪点并存，暗部压低但保留结构，发丝边缘与鼻梁、锁骨位置出现冷白高光反射，整体呈现韩系 MV 预告片式的高级定帧感。';
+      const fullPromptText = '以<图片>中的<浅棕色波浪长发、身穿青底金色花纹挂脖连衣裙、手持带白色毛球黑色包包的年轻女性>为<主体>。场景完全沿用原图的日本浅草寺雷门环境，背景包含巨大的红底黑字纸灯笼与朱红色大柱，保持白天自然柔和的真实光感。在 0 到 2 秒，画面以全景建立空间纵深，镜头沿中轴线向<主体>胸口以不超过5度的微仰角缓慢推入，推入速度先慢后快；在 2 到 5 秒，镜头迅速带有径向模糊地向后拉回至中景，拉回速度逐渐减慢至平稳，随后再次向<主体>平滑推入；在 5 到 8 秒，镜头第二次迅速带有径向模糊向后拉回，速度递减至停稳后，第三次向<主体>推入，构图逐渐收紧至上半身；在 8 到 15 秒，镜头平稳过渡到<主体>的近景并定格，<主体>保持自然呼吸与轻微的重心调整，清晰展现五官轮廓、发丝细节与衣物材质，画面在柔和光影中缓慢收束。整个过程<主体>特征与穿搭保持高度一致，各段运镜衔接平滑自然。';
 
       let currentIndex = 0;
       const typingInterval = setInterval(() => {
@@ -184,23 +163,10 @@ export default function Home() {
 
   const handleFunctionClick = (e: React.MouseEvent, optionId: string) => {
     e.stopPropagation();
-    if (innerStep === 'function' && !selectedFunction) {
+    if (!selectedFunction) {
       setSelectedFunction(optionId);
-      if (optionId === 'B') {
-        // Automatically switch to style question after a short delay
-        setTimeout(() => {
-          setInnerStep('style');
-        }, 500);
-      }
-    }
-  };
-
-  const handleStyleClick = (e: React.MouseEvent, optionId: string) => {
-    e.stopPropagation(); // Prevent screen click
-    if (innerStep === 'style' && !selectedStyle) {
-      setSelectedStyle(optionId);
-      if (optionId === 'A' || optionId === 'B') {
-        // Automatically proceed to the next step after a short delay
+      if (optionId === 'A') {
+        // Automatically switch to the next step after a short delay
         setTimeout(() => {
           setStep(3);
         }, 500);
@@ -236,10 +202,10 @@ export default function Home() {
     setIsDrawerOpen(false);
     setIsImageSelected(true);
     
-    // Simulate user typing "我要变装" after selecting image
+    // Simulate user typing "我要生成推拉运镜" after selecting image
     setIsTyping(true);
     let text = '';
-    const targetText = '我要变装';
+    const targetText = '我要生成推拉运镜';
     let i = 0;
     
     const typeInterval = setInterval(() => {
@@ -255,7 +221,7 @@ export default function Home() {
 
   const handleSendClick = (e: React.MouseEvent) => {
     e.stopPropagation();
-    if (isImageSelected && inputText === '我要变装') {
+    if (isImageSelected && inputText === '我要生成推拉运镜') {
       // Send the message
       setInputText('');
       setIsImageSelected(false);
@@ -323,12 +289,12 @@ export default function Home() {
             <div className="bg-white rounded-[24px] rounded-tr-[8px] p-2 shadow-[0_2px_12px_rgba(0,0,0,0.04)] max-w-[75%] flex flex-col items-end">
               <div className="px-3 pt-2 pb-2">
                 <p className="text-[16px] text-[#111111] leading-[1.5] tracking-[0.02em]">
-                  我要变装
+                  我要生成推拉运镜
                 </p>
               </div>
               <div className="w-full rounded-[18px] overflow-hidden border border-gray-100 mt-1">
                 <img 
-                  src="/vv3.jpg" 
+                  src="/user-image.jpeg" 
                   alt="User uploaded selfie" 
                   className="w-full h-auto object-cover" 
                 />
@@ -342,70 +308,31 @@ export default function Home() {
               {/* Question Text transitions based on innerStep */}
               <p className={`text-[16px] text-[#111111] leading-[1.5] tracking-[0.02em] mb-3 transition-opacity duration-300 whitespace-nowrap`}>
                 {step >= 2 && (
-                  innerStep === 'function' 
-                    ? <FadeInText key="function" text="你需要使用什么功能？" delay={0.3} /> 
-                    : <FadeInText key="style" text="好的，你需要什么样的变装效果？" delay={0.1} />
+                  <FadeInText key="function" text="好的，是否按图片沿用场景、光感、色调与人物穿搭？" delay={0.3} /> 
                 )}
               </p>
               
               {/* Options List */}
               <div 
                 className="flex flex-col mt-4 relative overflow-hidden transition-all duration-500 ease-in-out"
-                style={{ height: innerStep === 'function' ? '128px' : '240px' }}
+                style={{ height: '240px' }}
               >
-                {/* Function Options (A. Image / B. Video) */}
                 <div className={`absolute w-full top-0 left-0 flex flex-col space-y-2 transition-all duration-500 ease-in-out ${
-                  innerStep === 'function' 
-                    ? 'opacity-100 translate-x-0 pointer-events-auto delay-700' 
+                  step >= 2 
+                    ? 'opacity-100 translate-x-0 pointer-events-auto delay-[800ms]' 
                     : 'opacity-0 -translate-x-4 pointer-events-none'
                 }`}>
                   {[
-                    { id: 'A', text: '生成图片' },
-                    { id: 'B', text: '生成视频' },
+                    { id: 'A', text: '完全沿用' },
+                    { id: 'B', text: '仅沿用服装' },
+                    { id: 'C', text: '仅沿用背景' },
+                    { id: 'D', text: '其他（请补充）' },
                   ].map((option) => {
                     const isSelected = selectedFunction === option.id;
                     return (
                       <button
                         key={option.id}
                         onClick={(e) => handleFunctionClick(e, option.id)}
-                        className={`flex items-center w-full px-4 py-3.5 rounded-[14px] transition-all duration-200 border ${
-                          isSelected 
-                            ? 'border-[#FF2A5F] bg-[#FF2A5F]/5 shadow-sm' 
-                            : 'border-[#E5E5E5] bg-white hover:bg-gray-50/80 active:bg-gray-100'
-                        }`}
-                      >
-                        <span className={`text-[15px] font-medium w-5 text-left transition-colors ${
-                          isSelected ? 'text-[#FF2A5F]' : 'text-[#999999]'
-                        }`}>
-                          {option.id}
-                        </span>
-                        <span className={`text-[16px] leading-[1.5] tracking-[0.02em] transition-colors ${
-                          isSelected ? 'text-[#FF2A5F]' : 'text-[#111111]'
-                        }`}>
-                          {option.text}
-                        </span>
-                      </button>
-                    );
-                  })}
-                </div>
-
-                {/* Style Options (A/B/C/D) */}
-                <div className={`absolute w-full top-0 left-0 flex flex-col space-y-2 transition-all duration-500 ease-in-out ${
-                  innerStep === 'style' 
-                    ? 'opacity-100 translate-x-0 pointer-events-auto delay-[800ms]' 
-                    : 'opacity-0 translate-x-4 pointer-events-none'
-                }`}>
-                  {[
-                    { id: 'A', text: '甜美风格的变装' },
-                    { id: 'B', text: '潮流风格的变装' },
-                    { id: 'C', text: '复古风格的变装' },
-                    { id: 'D', text: 'Y2K风格的变装' },
-                  ].map((option) => {
-                    const isSelected = selectedStyle === option.id;
-                    return (
-                      <button
-                        key={option.id}
-                        onClick={(e) => handleStyleClick(e, option.id)}
                         className={`flex items-center w-full px-4 py-3.5 rounded-[14px] transition-all duration-200 border ${
                           isSelected 
                             ? 'border-[#FF2A5F] bg-[#FF2A5F]/5 shadow-sm' 
@@ -439,7 +366,7 @@ export default function Home() {
                 className="w-[20px] h-[20px] object-contain [image-rendering:-webkit-optimize-contrast] [image-rendering:crisp-edges] -ml-[8px]"
               />
               <span className="text-[15px] text-[#8E8E93] font-normal tracking-[0.02em] leading-none -ml-[9px]">
-                调用技能：kpop-mv-outfit-transition
+                调用技能：推拉运镜
               </span>
             </div>
             
@@ -511,7 +438,7 @@ export default function Home() {
           <div className={`flex w-full transition-all duration-500 ease-out transform delay-150 ${step >= 6 ? 'opacity-100 translate-y-0 h-auto' : 'opacity-0 translate-y-4 pointer-events-none h-0 overflow-hidden'}`}>
             <div className="bg-white rounded-[24px] rounded-tl-[8px] px-5 py-4 shadow-[0_2px_12px_rgba(0,0,0,0.02)] max-w-[85%] border border-gray-100/50">
               <p className="text-[16px] text-[#111111] leading-[1.5] tracking-[0.02em]">
-                {step >= 6 ? <FadeInText text="我将会用提示词帮你生成一条变装视频。" delay={0.3} boldIndices={[4, 5, 6]} /> : '我将会用提示词帮你生成一条变装视频。'}
+                {step >= 6 ? <FadeInText text="我将会用提示词帮你生成一条推拉运镜视频。" delay={0.3} boldIndices={[4, 5, 6, 7]} /> : '我将会用提示词帮你生成一条推拉运镜视频。'}
               </p>
             </div>
           </div>
@@ -519,9 +446,9 @@ export default function Home() {
           {/* Agent Video Message (Step 7) */}
           <div className={`flex w-full transition-all duration-500 ease-out transform delay-300 ${step >= 7 ? 'opacity-100 translate-y-0 h-auto' : 'opacity-0 translate-y-4 pointer-events-none h-0 overflow-hidden'}`}>
             <div className="bg-white rounded-[24px] rounded-tl-[8px] p-2 shadow-[0_2px_12px_rgba(0,0,0,0.04)] max-w-[85%] border border-gray-100/50">
-              <div className="w-full rounded-[18px] overflow-hidden bg-black/5 relative aspect-video">
+              <div className="w-full rounded-[18px] overflow-hidden bg-black/5 relative aspect-[9/16]">
                 <video 
-                  src={selectedStyle === 'A' ? "/outfit-transition-a.mp4" : "/outfit-transition.mp4"}
+                  src="/zoom-video.mp4"
                   className="w-full h-full object-cover"
                   controls
                   playsInline
@@ -549,7 +476,7 @@ export default function Home() {
           <div className={`px-4 pt-2 pb-1 transition-all duration-300 ${isImageSelected ? 'opacity-100 h-[80px]' : 'opacity-0 h-0 overflow-hidden'}`}>
              <div className="h-full w-[60px] relative rounded-[12px] overflow-hidden border border-gray-200/50 shadow-sm bg-white p-1">
                <div className="w-full h-full rounded-[8px] overflow-hidden">
-                 <img src="/vv3.jpg" alt="Selected" className="w-full h-full object-cover" />
+                 <img src="/user-image.jpeg" alt="Selected" className="w-full h-full object-cover" />
                </div>
                <button 
                  className="absolute -top-1 -right-1 bg-gray-200/80 text-gray-600 rounded-full p-0.5 active:bg-gray-300"
@@ -583,7 +510,7 @@ export default function Home() {
                 
                 {inputText || isImageSelected ? (
                   <button className={`w-[36px] h-[36px] flex items-center justify-center transition-all shrink-0 active:scale-95 ${
-                      inputText === '我要变装' && isImageSelected && !isTyping
+                      inputText === '我要生成推拉运镜' && isImageSelected && !isTyping
                         ? '' 
                         : 'opacity-50 cursor-not-allowed'
                     }`}
@@ -617,7 +544,7 @@ export default function Home() {
                 onClick={handleImageSelect}
                 className="aspect-square rounded-[16px] overflow-hidden cursor-pointer relative group border border-gray-100 shadow-sm"
               >
-                <img src="/vv3.jpg" alt="Gallery item" className="w-full h-full object-cover transition-transform group-active:scale-105" />
+                <img src="/user-image.jpeg" alt="Gallery item" className="w-full h-full object-cover transition-transform group-active:scale-105" />
                 <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors" />
                 <div className="absolute bottom-1 right-1 bg-black/40 backdrop-blur-sm rounded-full p-1 opacity-0 group-hover:opacity-100 transition-opacity">
                   <ImageIcon size={12} color="white" />
