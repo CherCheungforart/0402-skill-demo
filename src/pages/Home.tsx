@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { X, Plus, ChevronLeft } from 'lucide-react';
+import { X, Plus, ChevronLeft, Image as ImageIcon, Send } from 'lucide-react';
 
 export default function Home() {
   const [inputText, setInputText] = useState('');
@@ -12,6 +12,11 @@ export default function Home() {
   
   // Track the progressive revelation of long text sections in Step 4
   const [longTextSection, setLongTextSection] = useState(0);
+  
+  // Track states for the new input interaction
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const [isImageSelected, setIsImageSelected] = useState(false);
+  const [isTyping, setIsTyping] = useState(false);
   
   const chatContainerRef = useRef<HTMLDivElement>(null);
 
@@ -80,9 +85,7 @@ export default function Home() {
   }, [step, innerStep, longTextSection]);
 
   const handleScreenClick = () => {
-    if (step === 0) {
-      setStep(1); // First click reveals the user's initial message
-    } else if (step === 1) {
+    if (step === 1) {
       setStep(2); // Agent's question (Function choice)
     } else if (step >= 6 && step < 13) {
       setStep(prev => prev + 1);
@@ -123,6 +126,49 @@ export default function Home() {
     setSelectedFunction(null);
     setSelectedStyle(null);
     setLongTextSection(0);
+    setIsDrawerOpen(false);
+    setIsImageSelected(false);
+    setIsTyping(false);
+    setInputText('');
+  };
+
+  const handlePlusClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (step === 0 && !isImageSelected) {
+      setIsDrawerOpen(!isDrawerOpen);
+    }
+  };
+
+  const handleImageSelect = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setIsDrawerOpen(false);
+    setIsImageSelected(true);
+    
+    // Simulate user typing "我要变装" after selecting image
+    setIsTyping(true);
+    let text = '';
+    const targetText = '我要变装';
+    let i = 0;
+    
+    const typeInterval = setInterval(() => {
+      text += targetText[i];
+      setInputText(text);
+      i++;
+      if (i >= targetText.length) {
+        clearInterval(typeInterval);
+        setIsTyping(false);
+      }
+    }, 150); // Type one character every 150ms
+  };
+
+  const handleSendClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (isImageSelected && inputText === '我要变装') {
+      // Send the message
+      setInputText('');
+      setIsImageSelected(false);
+      setStep(1); // Proceed to show user message bubble
+    }
   };
 
   return (
@@ -542,37 +588,105 @@ export default function Home() {
           </div>
 
           {/* Hint Overlay (Only visible at step 0 before any interaction) */}
-          <div className={`absolute inset-0 flex items-center justify-center pointer-events-none transition-opacity duration-700 z-50 ${step === 0 ? 'opacity-100' : 'opacity-0'}`}>
+          <div className={`absolute inset-0 flex items-center justify-center pointer-events-none transition-opacity duration-700 z-50 ${step === 0 && !isDrawerOpen && !isImageSelected ? 'opacity-100' : 'opacity-0'}`}>
             <div className="bg-black/30 text-white/95 px-6 py-2.5 rounded-full text-[15px] font-medium tracking-wider backdrop-blur-md animate-pulse shadow-md">
-              点击屏幕任意位置继续
+              点击屏幕或下方➕号开始
             </div>
           </div>
 
         </div>
 
         {/* Bottom Input Area */}
-        <div className="absolute bottom-0 w-full bg-[#F6F7F9] pb-[34px] pt-3 px-4 z-20">
-          <div className="flex items-center bg-white rounded-full h-[54px] pl-5 pr-2 shadow-[0_2px_12px_rgba(0,0,0,0.03)] border border-gray-100/50">
-            <input 
-              type="text"
-              value={inputText}
-              onChange={(e) => setInputText(e.target.value)}
-              placeholder="输入你的创作想法"
-              className="flex-1 bg-transparent text-[16px] text-[#111111] focus:outline-none placeholder-[#A3A3A3] tracking-wide"
-            />
-            <div className="flex items-center space-x-2.5 ml-2">
-              <button className="w-[36px] h-[36px] rounded-full border-[1.5px] border-[#111111] flex items-center justify-center text-[#111111] active:scale-95 transition-transform bg-white">
-                {/* Voice/Waveform Icon */}
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M11 5L6 9H2v6h4l5 4V5z"></path>
-                  <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
-                  <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
-                </svg>
-              </button>
-              <button className="w-[36px] h-[36px] rounded-full border-[1.5px] border-[#111111] flex items-center justify-center text-[#111111] active:scale-95 transition-transform bg-white">
-                <Plus size={18} strokeWidth={2} />
-              </button>
+        <div className="absolute bottom-0 w-full bg-[#F6F7F9] z-20 transition-all duration-300" style={{ transform: isDrawerOpen ? 'translateY(-240px)' : 'translateY(0)' }}>
+          
+          {/* Selected Image Preview above input */}
+          <div className={`px-4 pt-2 pb-1 transition-all duration-300 ${isImageSelected ? 'opacity-100 h-[80px]' : 'opacity-0 h-0 overflow-hidden'}`}>
+             <div className="h-full w-[60px] relative rounded-[12px] overflow-hidden border border-gray-200/50 shadow-sm bg-white p-1">
+               <div className="w-full h-full rounded-[8px] overflow-hidden">
+                 <img src="/vv3.jpg" alt="Selected" className="w-full h-full object-cover" />
+               </div>
+               <button 
+                 className="absolute -top-1 -right-1 bg-gray-200/80 text-gray-600 rounded-full p-0.5 active:bg-gray-300"
+                 onClick={(e) => {
+                   e.stopPropagation();
+                   setIsImageSelected(false);
+                   setInputText('');
+                 }}
+               >
+                 <X size={12} strokeWidth={2} />
+               </button>
+             </div>
+          </div>
+
+          <div className={`pb-[34px] px-4 ${isImageSelected ? 'pt-1' : 'pt-3'}`}>
+            <div className="flex items-center bg-white rounded-[24px] min-h-[54px] pl-5 pr-2 shadow-[0_2px_12px_rgba(0,0,0,0.03)] border border-gray-100/50 transition-all duration-300">
+              <input 
+                type="text"
+                value={inputText}
+                onChange={(e) => setInputText(e.target.value)}
+                readOnly={isTyping || (step > 0 && step < 13)}
+                placeholder={isTyping ? "" : "输入你的创作想法"}
+                className="flex-1 bg-transparent text-[16px] py-3 text-[#111111] focus:outline-none placeholder-[#A3A3A3] tracking-wide"
+              />
+              <div className="flex items-center space-x-2.5 ml-2">
+                {!inputText && !isImageSelected && (
+                  <button className="w-[36px] h-[36px] rounded-full border-[1.5px] border-[#111111] flex items-center justify-center text-[#111111] active:scale-95 transition-transform bg-white shrink-0">
+                    {/* Voice/Waveform Icon */}
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M11 5L6 9H2v6h4l5 4V5z"></path>
+                      <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                      <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+                    </svg>
+                  </button>
+                )}
+                
+                {inputText || isImageSelected ? (
+                  <button 
+                    onClick={handleSendClick}
+                    className={`w-[36px] h-[36px] rounded-full flex items-center justify-center transition-all shrink-0 ${
+                      inputText === '我要变装' && isImageSelected && !isTyping
+                        ? 'bg-[#FF2A5F] text-white active:scale-95 shadow-md shadow-[#FF2A5F]/20' 
+                        : 'bg-gray-200 text-gray-400 cursor-not-allowed'
+                    }`}
+                  >
+                    <Send size={16} strokeWidth={2} className="ml-0.5" />
+                  </button>
+                ) : (
+                  <button 
+                    onClick={handlePlusClick}
+                    className={`w-[36px] h-[36px] rounded-full border-[1.5px] border-[#111111] flex items-center justify-center text-[#111111] transition-transform shrink-0 ${isDrawerOpen ? 'rotate-45 bg-gray-100' : 'bg-white active:scale-95'}`}
+                  >
+                    <Plus size={18} strokeWidth={2} />
+                  </button>
+                )}
+              </div>
             </div>
+          </div>
+        </div>
+        
+        {/* Attachment Drawer */}
+        <div 
+          className="absolute bottom-0 left-0 w-full h-[240px] bg-white z-10 transition-transform duration-300 ease-out border-t border-gray-100 px-6 pt-6 pb-8"
+          style={{ transform: isDrawerOpen ? 'translateY(0)' : 'translateY(100%)' }}
+        >
+          <h3 className="text-[14px] font-medium text-gray-500 mb-4">选择照片或视频</h3>
+          <div className="grid grid-cols-4 gap-3">
+            {/* The target image */}
+            <div 
+              onClick={handleImageSelect}
+              className="aspect-square rounded-[16px] overflow-hidden cursor-pointer relative group border border-gray-100 shadow-sm"
+            >
+              <img src="/vv3.jpg" alt="Gallery item" className="w-full h-full object-cover transition-transform group-active:scale-105" />
+              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors" />
+              <div className="absolute bottom-1 right-1 bg-black/40 backdrop-blur-sm rounded-full p-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                <ImageIcon size={12} color="white" />
+              </div>
+            </div>
+            
+            {/* Dummy gallery items */}
+            {[1, 2, 3].map(i => (
+              <div key={i} className="aspect-square rounded-[16px] bg-gray-100 overflow-hidden border border-gray-50" />
+            ))}
           </div>
         </div>
         
