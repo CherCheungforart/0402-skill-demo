@@ -26,6 +26,14 @@ export default function Home() {
       chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
     }
     
+    // Automatically trigger Step 2 (Agent's question) after user sends the message in Step 1
+    if (step === 1) {
+      const timer = setTimeout(() => {
+        setStep(2);
+      }, 600); // 600ms delay to feel natural before AI responds
+      return () => clearTimeout(timer);
+    }
+    
     // Automatically trigger Step 4 after Step 3 is shown
     if (step === 3) {
       const timer = setTimeout(() => {
@@ -86,9 +94,8 @@ export default function Home() {
 
   const handleScreenClick = () => {
     // Only allow screen clicks to advance steps after the initial message has been sent
-    if (step === 1) {
-      setStep(2); // Agent's question (Function choice)
-    } else if (step >= 6 && step < 13) {
+    // And skip step 1->2 because it's now automated
+    if (step >= 6 && step < 13) {
       setStep(prev => prev + 1);
     }
   };
