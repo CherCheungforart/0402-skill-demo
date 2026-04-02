@@ -209,11 +209,21 @@ export default function Home() {
     e.stopPropagation(); // Prevent screen click
     if (innerStep === 'style' && !selectedStyle) {
       setSelectedStyle(optionId);
-      if (optionId === 'A' || optionId === 'B') {
-        // Automatically proceed to the next step after a short delay
-        setTimeout(() => {
-          setStep(3);
-        }, 500);
+      
+      if (selectedImageId === 'image2') {
+        if (optionId === 'A') {
+          // For image2, only option A proceeds to Step 3
+          setTimeout(() => {
+            setStep(3);
+          }, 500);
+        }
+      } else {
+        if (optionId === 'A' || optionId === 'B') {
+          // For image1, A or B proceeds
+          setTimeout(() => {
+            setStep(3);
+          }, 500);
+        }
       }
     }
   };
@@ -271,12 +281,7 @@ export default function Home() {
       setInputText('');
       setIsImageSelected(false);
       
-      // For image2, skip Step 2 (options) and jump straight to Step 3 (System notification)
-      if (selectedImageId === 'image2') {
-        setStep(3);
-      } else {
-        setStep(1); // Proceed to show user message bubble for image1
-      }
+      setStep(1); // Proceed to show user message bubble for both images
     }
   };
 
@@ -361,7 +366,7 @@ export default function Home() {
                 {step >= 2 && (
                   innerStep === 'function' 
                     ? <FadeInText key="function" text="你需要使用什么功能？" delay={0.3} /> 
-                    : <FadeInText key="style" text="好的，你需要什么样的变装效果？" delay={0.1} />
+                    : <FadeInText key="style" text={selectedImageId === 'image2' ? "保留图片主体面部特征，其他是否按图片沿用场景、光感、色调与造型？" : "好的，你需要什么样的变装效果？"} delay={0.1} />
                 )}
               </p>
               
@@ -412,12 +417,17 @@ export default function Home() {
                     ? 'opacity-100 translate-x-0 pointer-events-auto delay-[800ms]' 
                     : 'opacity-0 translate-x-4 pointer-events-none'
                 }`}>
-                  {[
+                  {(selectedImageId === 'image2' ? [
+                    { id: 'A', text: '完全沿用（推荐）' },
+                    { id: 'B', text: '仅沿用造型' },
+                    { id: 'C', text: '仅沿用场景' },
+                    { id: 'D', text: '其他' },
+                  ] : [
                     { id: 'A', text: '甜美风格的变装' },
                     { id: 'B', text: '潮流风格的变装' },
                     { id: 'C', text: '复古风格的变装' },
                     { id: 'D', text: 'Y2K风格的变装' },
-                  ].map((option) => {
+                  ]).map((option) => {
                     const isSelected = selectedStyle === option.id;
                     return (
                       <button
